@@ -42,5 +42,5 @@ services:
       - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx
       - ${LIZMAP_DIR}:/srv/lizmap
     ports:
-      - 127.0.0.1:8888:80
+      - 8888:80
 
