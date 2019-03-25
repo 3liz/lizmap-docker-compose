@@ -1,7 +1,7 @@
 version: '3'
 services:
   lizmap:
-    image: 3liz/lizmap-web-client
+    image: 3liz/lizmap-web-client:3.2
     environment:
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_CACHEREDISHOST: redis
@@ -20,7 +20,7 @@ services:
       - php-fpm
     restart: unless-stopped
   map:
-    image: 3liz/qgis-map-server
+    image: 3liz/qgis-map-server:3.4
     environment:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       QGSRV_CACHE_ROOTDIR: /srv/projects
@@ -34,7 +34,7 @@ services:
       - ${LIZMAP_DIR}/wps-data:/srv/data
     restart: unless-stopped
   redis:
-    image: redis:4
+    image: redis:5
   web:
     image: nginx:1
     volumes:
