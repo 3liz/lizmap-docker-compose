@@ -43,4 +43,6 @@ services:
       - ${LIZMAP_DIR}:/srv/lizmap
     ports:
       - 8888:80
+    depends_on:
+      - lizmap
 
