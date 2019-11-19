@@ -1,7 +1,7 @@
 version: '3'
 services:
   lizmap:
-    image: 3liz/lizmap-web-client:3.2
+    image: 3liz/lizmap-web-client:3.3
     environment:
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_CACHEREDISHOST: redis
