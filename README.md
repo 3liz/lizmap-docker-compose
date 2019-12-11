@@ -17,9 +17,9 @@ and open your browser at http://localhost:8888
 The docker-compose.yml setup file will require to define the following
 variables:
 
-- `LIZMAP_DIR`: the directory to store your projects and configuraton files
+- `LIZMAP_DIR`: the directory to store your projects and configuration files
 - `LIZMAP_UID`: the uid used for running the service
-- `LIZMAP_GID`: the gid used for runnnig the servige
+- `LIZMAP_GID`: the gid used for runnnig the service
 
 Then run:
 ```
