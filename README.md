@@ -2,30 +2,58 @@
 
 Run a complete Lizmap stack with test data. 
 
+- lizmap web client
+- Qgis server
+- Qgis WPS processing 
+- redis
+
+Note: this is a sample configuration for testing Lizmap web client with Qgis and WPS features:
+**do no use in production**
+
+## Requirements
+
+- Docker engine
+- docker-compose
+- make
+
 ## Quick start
 
 In command shell execute:
 ```
-./lizmap-run
+Make start
 ```
 
-and open your browser at http://localhost:8888
+and open your browser at http://localhost:8090.
 
-## Environment
+## Running the first time
 
+The command creates a docker-compose environnement and start the stack
 
-The docker-compose.yml setup file will require to define the following
-variables:
+The Lizmap service will start two toys projects that you will have to configure in the Lizmap
+interface.
 
-- `LIZMAP_DIR`: the directory to store your projects and configuration files
-- `LIZMAP_UID`: the uid used for running the service
-- `LIZMAP_GID`: the gid used for runnnig the service
+See the [Lizmap documentation](https://docs.lizmap.com) for how to configure Lizmap at first run.
 
-Then run:
+Default login is `admin`, password `admin`. It will be asked to change it at first login.
+
+## Reset the configuration
+
+In command line
+
 ```
-docker-compose up
+make clean 
 ```
+
+This will remove all previous configuration. Youl will have to reenter the configuration in Lizmap
+as for the first run.
 
 For more informations, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
+
+Refs:
+    - https://github.com/3liz/lizmap-web-client
+    - https://github.com/3liz/py-qgis-server
+    - https://github.com/3liz/py-qgis-wps
+    
+    
 
 

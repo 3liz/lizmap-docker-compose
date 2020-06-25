@@ -1,7 +1,7 @@
 version: '3'
 services:
   lizmap:
-    image: 3liz/lizmap-web-client:3.3
+    image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
     environment:
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_CACHEREDISHOST: redis
@@ -9,6 +9,7 @@ services:
       LIZMAP_HOME: /srv/lizmap
       LIZMAP_USER: ${LIZMAP_USER_ID}
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
+      LIZMAP_WPS_URL: http://wps:8080/
     volumes:
       - ${LIZMAP_DIR}/instances:/srv/projects
       - ${LIZMAP_DIR}/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
@@ -16,25 +17,55 @@ services:
       - ${LIZMAP_DIR}/var/lizmap-db:/www/lizmap/var/db
       - ${LIZMAP_DIR}/www:/www/lizmap/www
       - ${LIZMAP_DIR}/www/var/log:/www/lizmap/var/log
+      - ${LIZMAP_DIR}/etc:/srv/etc:ro
     command:
       - php-fpm
     restart: unless-stopped
   map:
-    image: 3liz/qgis-map-server:3.4
+    image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
     environment:
-      PGSERVICEFILE: /srv/etc/pg_service.conf
-      QGSRV_CACHE_ROOTDIR: /srv/projects
       QGSRV_CACHE_SIZE: '20'
-      QGSRV_LOGGING_LEVEL: DEBUG
+      QGSRV_CACHE_ROOTDIR: /srv/projects
       QGSRV_USER: ${LIZMAP_USER_ID}:${LIZMAP_USER_GID}
-      ROUTER_HOST: map
+      QGSRV_LOGGING_LEVEL: DEBUG
+      QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
+      QGSRV_SERVER_PLUGINPATH: /srv/plugins
+      QGSRV_PROJECTS_SCHEMES_WPS_RESULTS: /srv/data
+      PGSERVICEFILE: /srv/etc/pg_service.conf
+      PGSPASSFILE: /srv/etc/pgpass.conf
+      QGIS_OPTIONS_PATH: /srv/etc/qgis
     volumes:
       - ${LIZMAP_DIR}/instances:/srv/projects
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
       - ${LIZMAP_DIR}/wps-data:/srv/data
+    ports:
+      - ${OWS_PORT}:8080
     restart: unless-stopped
+  wps:
+    image: 3liz/qgis-wps:${QGIS_VERSION_TAG}
+    volumes:
+      - '${LIZMAP_DIR}/processing:/srv/processing/:ro'
+      - '${LIZMAP_DIR}/instances:/srv/projects'
+      - '${LIZMAP_DIR}/etc:/srv/etc:ro'
+      - '${LIZMAP_DIR}/wps-data:/srv/data'
+    environment:
+        QGSWPS_SERVER_PARALLELPROCESSES: ${WPS_NUM_WORKERS}
+        QGSWPS_PROCESSING_PROVIDERS_MODULE_PATH: /srv/processing
+        QGSWPS_CACHE_ROOTDIR: /srv/projects
+        QGSWPS_SERVER_WORKDIR: /srv/data
+        QGSWPS_OUTPUTPATH: /srv/data
+        QGSWPS_REDIS_HOST: redis
+        QGSWPS_USER: '${LIZMAP_USER_ID}:${LIZMAP_USER_GID}'
+        QGSWPS_SERVER_WMS_SERVICE_URL: http://map:8080/ows/
+        QGSWPS_SERVER_RESPONSE_TIMEOUT: 1800
+        QGSWPS_SERVER_RESPONSE_EXPIRATION: 86400
+        QGSWPS_SERVER_PROCESSLIFECYCLE: 10
+        PGSERVICEFILE: /srv/etc/pg_service.conf
+        PGSPASSFILE: /srv/etc/pgpass.conf
+    ports:
+      - ${WPS_PORT}:8080
   redis:
-    image: redis:5
+    image: redis:5-alpine
   web:
     image: nginx:1
     volumes:
@@ -42,7 +73,7 @@ services:
       - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx
       - ${LIZMAP_DIR}:/srv/lizmap
     ports:
-      - 8888:80
+      - ${LIZMAP_PORT}:80
     depends_on:
       - lizmap
 

@@ -5,4 +5,7 @@
 /lizmap/var
 /lizmap/wps-data
 
+*.qgs~
+
+.env
 
