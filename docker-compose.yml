@@ -41,29 +41,6 @@ services:
     ports:
       - ${OWS_PORT}:8080
     restart: unless-stopped
-  wps:
-    image: 3liz/qgis-wps:${QGIS_VERSION_TAG}
-    volumes:
-      - '${LIZMAP_DIR}/processing:/srv/processing/:ro'
-      - '${LIZMAP_DIR}/instances:/srv/projects'
-      - '${LIZMAP_DIR}/etc:/srv/etc:ro'
-      - '${LIZMAP_DIR}/wps-data:/srv/data'
-    environment:
-        QGSWPS_SERVER_PARALLELPROCESSES: ${WPS_NUM_WORKERS}
-        QGSWPS_PROCESSING_PROVIDERS_MODULE_PATH: /srv/processing
-        QGSWPS_CACHE_ROOTDIR: /srv/projects
-        QGSWPS_SERVER_WORKDIR: /srv/data
-        QGSWPS_OUTPUTPATH: /srv/data
-        QGSWPS_REDIS_HOST: redis
-        QGSWPS_USER: '${LIZMAP_USER_ID}:${LIZMAP_USER_GID}'
-        QGSWPS_SERVER_WMS_SERVICE_URL: http://map:8080/ows/
-        QGSWPS_SERVER_RESPONSE_TIMEOUT: 1800
-        QGSWPS_SERVER_RESPONSE_EXPIRATION: 86400
-        QGSWPS_SERVER_PROCESSLIFECYCLE: 10
-        PGSERVICEFILE: /srv/etc/pg_service.conf
-        PGSPASSFILE: /srv/etc/pgpass.conf
-    ports:
-      - ${WPS_PORT}:8080
   redis:
     image: redis:5-alpine
   web:
