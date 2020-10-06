@@ -30,7 +30,6 @@ services:
       QGSRV_LOGGING_LEVEL: DEBUG
       QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
       QGSRV_SERVER_PLUGINPATH: /srv/plugins
-      QGSRV_PROJECTS_SCHEMES_WPS_RESULTS: /srv/data/
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGSPASSFILE: /srv/etc/pgpass.conf
       QGIS_OPTIONS_PATH: /srv/etc/qgis
