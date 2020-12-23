@@ -20,7 +20,7 @@ Note: this is a sample configuration for testing Lizmap web client with Qgis and
 
 In command shell execute:
 ```
-Make start
+make start
 ```
 
 and open your browser at http://localhost:8090.
