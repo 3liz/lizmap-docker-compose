@@ -7,8 +7,9 @@ Run a complete Lizmap stack with test data.
 - Qgis WPS processing 
 - redis
 
-Note: this is a sample configuration for testing Lizmap web client with Qgis and WPS features:
-**do no use in production**
+**Note**: this is a sample configuration for testing Lizmap web client with Qgis and WPS features: 
+if you want use it on a production server you will need to make adjustements for meeting 
+your production requirements. 
 
 ## Requirements
 
