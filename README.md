@@ -4,11 +4,11 @@ Run a complete Lizmap stack with test data.
 
 - lizmap web client
 - Qgis server
-- Qgis WPS processing 
 - redis
 
-Note: this is a sample configuration for testing Lizmap web client with Qgis and WPS features:
-**do no use in production**
+**Note**: this is a sample configuration for testing Lizmap web client with Qgis and WPS features: 
+if you want use it on a production server you will need to make adjustements for meeting 
+your production requirements. 
 
 ## Requirements
 
@@ -52,7 +52,6 @@ For more informations, refer to the [docker-compose documentation](https://docs.
 Refs:
     - https://github.com/3liz/lizmap-web-client
     - https://github.com/3liz/py-qgis-server
-    - https://github.com/3liz/py-qgis-wps
     
     
 
