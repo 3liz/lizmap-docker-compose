@@ -14,16 +14,32 @@ your production requirements.
 
 - Docker engine
 - docker-compose
-- make
+- make (optional in Windows)
 
 ## Quick start
+
+Execute those commands above for your system and open your browser at http://localhost:8090.
+### Linux
 
 In command shell execute:
 ```
 make start
 ```
 
-and open your browser at http://localhost:8090.
+### Windows
+
+In command powershell execute:
+
+```
+docker-compose --env-file .env.windows up
+```
+
+OR
+
+If you use `make` (optional):
+```
+make start
+```
 
 ## Running the first time
 
