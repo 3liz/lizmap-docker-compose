@@ -19,6 +19,10 @@ LIZMAP_USER_ID:=$(shell id -u)
 LIZMAP_USER_GID:=$(shell id -g)
 
 env:
+	@mkdir -p $(LIZMAP_DIR)/www/var/log \
+			  $(LIZMAP_DIR)/var/log/nginx \
+			  $(LIZMAP_DIR)/var/nginx-cache \
+			  $*
 	@@{\
 		echo "Creating environment file for docker-compose";\
 		echo "LIZMAP_DIR=$(LIZMAP_DIR)" > .env;\

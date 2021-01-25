@@ -44,12 +44,14 @@ services:
     image: redis:5-alpine
   web:
     image: nginx:1
+    user: ${LIZMAP_USER_ID}:${LIZMAP_USER_ID}
     volumes:
       - ${LIZMAP_DIR}/etc/nginx.conf:/etc/nginx/nginx.conf
       - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx
+      - ${LIZMAP_DIR}/var/nginx-cache:/var/cache/nginx
       - ${LIZMAP_DIR}:/srv/lizmap
     ports:
-      - ${LIZMAP_PORT}:80
+      - ${LIZMAP_PORT}:8080
     depends_on:
       - lizmap
 
