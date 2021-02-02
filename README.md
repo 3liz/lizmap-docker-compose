@@ -19,26 +19,34 @@ your production requirements.
 ## Quick start
 
 Execute those commands above for your system and open your browser at http://localhost:8090.
+
+> Actually Lizmap 3.4.1 (last version) can't be tested with this stack but you can test Lizmap 3.3.x or 3.4.0.
+> See commands behind to start specific Lizmap version.
+
 ### Linux
 
-In command shell execute:
+In command shell execute to test last version:
 ```
 make start
+```
+Or if you want to test specific version (here last 3.3.x version):
+```
+make start LIZMAP_VERSION_TAG=3.3
 ```
 
 ### Windows
 
-In command powershell execute:
+You can execute same commands as Linux part given above if you use `make` (optional).
+
+Or in command powershell execute:
 
 ```
 docker-compose --env-file .env.windows up
 ```
+Or if you want to test specific version, you can edit .env.windows and change (here last 3.3.x version):
 
-OR
-
-If you use `make` (optional):
 ```
-make start
+LIZMAP_VERSION_TAG=3.3
 ```
 
 ## Running the first time
