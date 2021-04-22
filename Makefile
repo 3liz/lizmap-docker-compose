@@ -22,6 +22,9 @@ env:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
 			  $(LIZMAP_DIR)/var/log/nginx \
 			  $(LIZMAP_DIR)/var/nginx-cache \
+			  $(LIZMAP_DIR)/var/lizmap-theme-config \
+			  $(LIZMAP_DIR)/var/lizmap-db \
+			  $(LIZMAP_DIR)/var/lizmap-config \
 			  $*
 	@@{\
 		echo "Creating environment file for docker-compose";\
