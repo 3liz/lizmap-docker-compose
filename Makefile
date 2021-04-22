@@ -1,9 +1,5 @@
 .PHONY: env
 
-LIZMAP_DIR=$(shell pwd)/lizmap
-LIZMAP_USER_ID:=$(shell id -u)
-LIZMAP_USER_GID:=$(shell id -g)
-
 LIZMAP_VERSION_TAG:=3.4
 QGIS_VERSION_TAG:=3.10
 
