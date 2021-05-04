@@ -9,7 +9,8 @@ services:
       LIZMAP_HOME: /srv/lizmap
       LIZMAP_USER: ${LIZMAP_USER_ID}
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
-      LIZMAP_WPS_URL: http://wps:8080/
+      LIZMAP_LOCALCONFIG_INCLUDE: /srv/etc/localconfig.d
+      LIZMAP_LIZMAPCONFIG_INCLUDE: /srv/etc/lizmapconfig.d
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGSPASSFILE: /srv/etc/pgpass.conf
     volumes:
