@@ -12,7 +12,7 @@ services:
       LIZMAP_LOCALCONFIG_INCLUDE: /srv/etc/localconfig.d
       LIZMAP_LIZMAPCONFIG_INCLUDE: /srv/etc/lizmapconfig.d
       PGSERVICEFILE: /srv/etc/pg_service.conf
-      PGSPASSFILE: /srv/etc/pgpass.conf
+      PGPASSFILE: /srv/etc/pgpass.conf
     volumes:
       - ${LIZMAP_DIR}/instances:/srv/projects
       - ${LIZMAP_DIR}/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
