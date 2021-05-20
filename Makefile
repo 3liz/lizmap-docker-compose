@@ -14,7 +14,7 @@ LIZMAP_DIR=$(shell pwd)/lizmap
 LIZMAP_USER_ID:=$(shell id -u)
 LIZMAP_USER_GID:=$(shell id -g)
 
-env:
+dirs:
 	@mkdir -p $(LIZMAP_DIR)/www/var/log \
 			  $(LIZMAP_DIR)/var/log/nginx \
 			  $(LIZMAP_DIR)/var/nginx-cache \
@@ -22,6 +22,8 @@ env:
 			  $(LIZMAP_DIR)/var/lizmap-db \
 			  $(LIZMAP_DIR)/var/lizmap-config \
 			  $*
+
+env: dirs
 	@@{\
 		echo "Creating environment file for docker-compose";\
 		echo "LIZMAP_DIR=$(LIZMAP_DIR)" > .env;\
@@ -57,10 +59,12 @@ rm:
 
 stop: rm
 
-clean: stop
+_clean: stop
 	rm -rf $(LIZMAP_DIR)/www/*
 	rm -rf $(LIZMAP_DIR)/var/*
 	rm -rf $(LIZMAP_DIR)/wps-data/*
+
+clean: _clean dirs
 
 # Pull images from github 3liz
 pull:

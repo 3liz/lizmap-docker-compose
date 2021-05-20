@@ -4,8 +4,23 @@
 .DS_Store
 
 /lizmap/www
-/lizmap/var
 /lizmap/wps-data
+/lizmap/var/*
+
+!/lizmap/var/lizmap-modules
+!/lizmap/var/lizmap-my-packages
+
+/lizmap/var/lizmap-modules/*
+/lizmap/var/lizmap-my-packages/*
+
+!/lizmap/var/lizmap-modules/README.md
+!/lizmap/var/lizmap-my-packages/README.md
+
+/lizmap/etc/localconfig.d/*.ini.php
+/lizmap/etc/mainconfig.d/*.ini.php
+/lizmap/etc/profiles.d/*.ini.php
+
+
 
 *.qgs~
 

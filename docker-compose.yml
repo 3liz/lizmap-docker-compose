@@ -9,8 +9,7 @@ services:
       LIZMAP_HOME: /srv/lizmap
       LIZMAP_USER: ${LIZMAP_USER_ID}
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
-      LIZMAP_LOCALCONFIG_INCLUDE: /srv/etc/localconfig.d
-      LIZMAP_LIZMAPCONFIG_INCLUDE: /srv/etc/lizmapconfig.d
+      LIZMAP_CONFIG_INCLUDE: /srv/etc
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGPASSFILE: /srv/etc/pgpass.conf
     volumes:
@@ -21,6 +20,8 @@ services:
       - ${LIZMAP_DIR}/www:/www/lizmap/www
       - ${LIZMAP_DIR}/www/var/log:/www/lizmap/var/log
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
+      - ${LIZMAP_DIR}/var/lizmap-modules:/www/lizmap/lizmap-modules
+      - ${LIZMAP_DIR}/var/lizmap-my-packages:/www/lizmap/my-packages
     command:
       - php-fpm
     restart: unless-stopped
