@@ -76,6 +76,30 @@ make clean
 This will remove all previous configuration. You will have to reenter the configuration in Lizmap
 as for the first run.
 
+## Activating Postgis service
+
+Postgis service may be activated by using the [profile option in docker-compose](https://docs.docker.com/compose/compose-file/compose-file-v3/#profiles)
+
+Example:
+
+```
+docker-compose --profile postgis up
+```
+
+Note that the default admin password will be `postgres` and may be changed when creating the environment. You may also
+change the host name alias of database (which default to `db.lizmap`)
+
+Example
+
+```
+make env POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.name
+```
+
+The database will persist as named volume `postgis_data`.
+
+
+## Références
+
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
 
 Refs:
