@@ -2,6 +2,7 @@
 
 LIZMAP_VERSION_TAG:=3.4
 QGIS_VERSION_TAG:=3.16
+POSTGIS_VERSION:=13-3
 
 QGIS_MAP_WORKERS:=1
 WPS_NUM_WORKERS:=1
@@ -9,6 +10,7 @@ WPS_NUM_WORKERS:=1
 LIZMAP_PORT:=127.0.0.1:8090
 OWS_PORT:=127.0.0.1:8091
 WPS_PORT:=127.0.0.1:8092
+POSTGIS_PORT:=127.0.0.1:5432
 
 LIZMAP_DIR=$(shell pwd)/lizmap
 LIZMAP_USER_ID:=$(shell id -u)
@@ -36,6 +38,8 @@ env: dirs
 		echo "LIZMAP_PORT=$(LIZMAP_PORT)" >> .env;\
 		echo "OWS_PORT=$(OWS_PORT)" >> .env;\
 		echo "WPS_PORT=$(WPS_PORT)" >> .env;\
+		echo "POSTGIS_VERSION=$(POSTGIS_VERSION)" >> .env;\
+		echo "POSTGIS_PORT=$(POSTGIS_PORT)" >> .env;\
 	}
 
 #

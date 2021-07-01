@@ -46,6 +46,8 @@ services:
     restart: unless-stopped
   redis:
     image: redis:5-alpine
+    volumes:
+      - redis_data:/data
   web:
     image: nginx:1
     user: ${LIZMAP_USER_ID}:${LIZMAP_USER_ID}
@@ -58,4 +60,18 @@ services:
       - ${LIZMAP_PORT}:8080
     depends_on:
       - lizmap
+  postgis:
+    image: 3liz/postgis:${POSTGIS_VERSION}
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    ports:
+      - ${POSTGIS_PORT}:5432
+    profiles:
+      - postgis
+
+volumes:
+    postgis_data:
+        driver: local
+    redis_data:
+        driver: local
 
