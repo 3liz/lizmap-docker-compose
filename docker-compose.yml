@@ -64,8 +64,14 @@ services:
     image: 3liz/postgis:${POSTGIS_VERSION}
     volumes:
       - postgis_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - ${POSTGIS_PORT}:5432
+    networks:
+      default:
+        aliases:
+          - ${POSTGIS_ALIAS}
     profiles:
       - postgis
 
