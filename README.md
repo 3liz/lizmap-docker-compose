@@ -97,8 +97,7 @@ make env POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.name
 
 The database will persist as named volume `postgis_data`.
 
-
-## Références
+## References
 
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
 
