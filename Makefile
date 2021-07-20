@@ -2,8 +2,8 @@
 # Build lizmap installer image
 # 
 
-NAME=3liz/lizmap-installer
-VERSION=1.0
+NAME=lizmap-installer-helper
+VERSION=latest
 
 LIZMAP_VERSION:=3.4
 QGIS_VERSION:=3.16
@@ -29,24 +29,10 @@ clean:
 	@INSTALL_DEST=$(INSTALL_DIR) \
 	./entrypoint.sh clean
 
-
-# Pull images from github 3liz
-pull:
-	docker pull 3liz/lizmap-web-client:${LIZMAP_VERSION}
-	docker pull 3liz/qgis-map-server:${QGIS_VERSION}
-	docker pull 3liz/qgis-wps:${QGIS_VERSION}
-
-
 build-installer:
 	docker build --rm \
 		-t $(NAME):$(VERSION) \
 		-t $(NAME):latest -f Dockerfile.installer .
-
-
-push-installer:
-	docker push $(NAME):$(VERSION)
-	docker push $(NAME):latest
-
 
 # Test installation from installer
 run-installer:
@@ -57,7 +43,7 @@ run-installer:
 	-e POSTGIS_VERSION=$(POSTGIS_VERSION) \
 	-e LIZMAP_INSTALL_DIR=$(INSTALL_DIR) \
 	-v $(INSTALL_DIR):/lizmap \
-	$(NAME):latest configure
+	$(NAME):$(VERSION) configure
 
 
 

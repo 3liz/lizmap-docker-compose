@@ -23,8 +23,10 @@ fi
 # Commands
 #
 
+SUEXEC="su-exec $LIZMAP_UID:$LIZMAP_GID"
+
 _makedirs() {
-    su-exec $LIZMAP_UID:$LIZMAP_GID mkdir -p $INSTALL_DEST/plugins \
+    $SUEXEC mkdir -p $INSTALL_DEST/plugins \
              $INSTALL_DEST/processing \
              $INSTALL_DEST/wps-data \
              $INSTALL_DEST/www/var/log \
@@ -32,7 +34,32 @@ _makedirs() {
              $INSTALL_DEST/var/nginx-cache \
              $INSTALL_DEST/var/lizmap-theme-config \
              $INSTALL_DEST/var/lizmap-db \
-             $INSTALL_DEST/var/lizmap-config
+             $INSTALL_DEST/var/lizmap-config \
+             $INSTALL_DEST/var/lizmap-modules \
+             $INSTALL_DEST/var/lizmap-my-packages
+}
+
+_makenv() {
+    source $INSTALL_SOURCE/env.default
+    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_INSTALL_DIR/instances"} 
+    cat > $INSTALL_DEST/.env <<-EOF
+		LIZMAP_PROJECTS=$LIZMAP_PROJECTS
+		LIZMAP_DIR=$LIZMAP_INSTALL_DIR
+		LIZMAP_UID=$LIZMAP_UID
+		LIZMAP_GID=$LIZMAP_GID
+		LIZMAP_VERSION_TAG=$LIZMAP_VERSION_TAG
+		QGIS_VERSION_TAG=$QGIS_VERSION_TAG
+		POSTGIS_VERSION=$POSTGIS_VERSION
+		POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+		QGIS_MAP_WORKERS=$QGIS_MAP_WORKERS
+		WPS_NUM_WORKERS=$WPS_NUM_WORKERS
+		LIZMAP_PORT=$LIZMAP_PORT
+		OWS_PORT=$OWS_PORT
+		WPS_PORT=$WPS_PORT
+		POSTGIS_PORT=$POSTGIS_PORT
+		POSTGIS_ALIAS=$POSTGIS_ALIAS   
+		EOF
+    chown $LIZMAP_UID:$LIZMAP_GID $INSTALL_DEST/.env
 }
 
 configure() {
@@ -51,30 +78,10 @@ configure() {
     # Create env file
     #
     echo "Creating env file"
-    source $INSTALL_SOURCE/env.default
-
-    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_INSTALL_DIR/instances"} 
-
-    su-exec $LIZMAP_UID:$LIZMAP_GID cat > $INSTALL_DEST/.env <<-EOF
-		LIZMAP_PROJECTS=$LIZMAP_PROJECTS
-		LIZMAP_DIR=$LIZMAP_INSTALL_DIR
-		LIZMAP_UID=$LIZMAP_UID
-		LIZMAP_GID=$LIZMAP_GID
-		LIZMAP_VERSION_TAG=$LIZMAP_VERSION_TAG
-		QGIS_VERSION_TAG=$QGIS_VERSION_TAG
-		POSTGIS_VERSION=$POSTGIS_VERSION
-		POSTGRES_PASSWORD=$POSTGRES_PASSWORD
-		QGIS_MAP_WORKERS=$QGIS_MAP_WORKERS
-		WPS_NUM_WORKERS=$WPS_NUM_WORKERS
-		LIZMAP_PORT=$LIZMAP_PORT
-		OWS_PORT=$OWS_PORT
-		WPS_PORT=$WPS_PORT
-		POSTGIS_PORT=$POSTGIS_PORT
-		POSTGIS_ALIAS=$POSTGIS_ALIAS   
-		EOF
+    _makenv
 
     #
-    # Send docker-compose file to standard output
+    # Copy docker-compose file
     #
     if [ "$COPY_COMPOSE_FILE" = 'yes' ]; then
        echo "Copying docker compose file"
@@ -82,7 +89,6 @@ configure() {
        chown $LIZMAP_UID:$LIZMAP_GID $INSTALL_DEST/docker-compose.yml
     fi
 }
-
 
 clean() {
     echo "Cleaning lizmap configs"

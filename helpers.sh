@@ -4,7 +4,7 @@ set -euo pipefail
 
 build-installer() {
     docker build --rm \
-        -t lizmap-installer:latest -f Dockerfile.installer .
+        -t lizmap-installer-helper:latest -f Dockerfile.installer .
 }
 
 configure() {
@@ -19,11 +19,11 @@ configure() {
     -e POSTGIS_PORT \
     -e POSTGRES_PASSWORD \
     -v $LIZMAP_INSTALL_DIR:/lizmap \
-    lizmap-installer:latest configure
+    lizmap-installer-helper:latest configure
 
     # Dump the env file into our context
     docker run --rm -t -v $LIZMAP_INSTALL_DIR:/lizmap \
-        lizmap-installer:latest cat /lizmap/.env > /root/.lizmap-env
+        lizmap-installer-helper:latest cat /lizmap/.env > /root/.lizmap-env
 }
 
 run-services() {
