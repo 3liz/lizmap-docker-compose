@@ -97,6 +97,13 @@ parameters:
   applyTo:
   - start
   - stop
+- name: profiles
+  type: string
+  default: ""
+  env: COMPOSE_PROFILES
+  applyTo:
+  - install
+  - upgrade
 
 install:
 - exec:
