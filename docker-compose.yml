@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
@@ -7,13 +7,13 @@ services:
       LIZMAP_CACHEREDISHOST: redis
       LIZMAP_CACHESTORAGETYPE: redis
       LIZMAP_HOME: /srv/lizmap
-      LIZMAP_USER: ${LIZMAP_USER_ID}
+      LIZMAP_USER: ${LIZMAP_UID}
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
       LIZMAP_CONFIG_INCLUDE: /srv/etc
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGPASSFILE: /srv/etc/pgpass.conf
     volumes:
-      - ${LIZMAP_DIR}/instances:/srv/projects
+      - ${LIZMAP_PROJECTS}:/srv/projects
       - ${LIZMAP_DIR}/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
       - ${LIZMAP_DIR}/var/lizmap-config:/www/lizmap/var/config
       - ${LIZMAP_DIR}/var/lizmap-db:/www/lizmap/var/db
@@ -30,7 +30,7 @@ services:
     environment:
       QGSRV_CACHE_SIZE: '20'
       QGSRV_CACHE_ROOTDIR: /srv/projects
-      QGSRV_USER: ${LIZMAP_USER_ID}:${LIZMAP_USER_GID}
+      QGSRV_USER: ${LIZMAP_UID}:${LIZMAP_GID}
       QGSRV_LOGGING_LEVEL: DEBUG
       QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
       QGSRV_SERVER_PLUGINPATH: /srv/plugins
@@ -38,7 +38,7 @@ services:
       PGSPASSFILE: /srv/etc/pgpass.conf
       QGIS_OPTIONS_PATH: /srv/etc/qgis
     volumes:
-      - ${LIZMAP_DIR}/instances:/srv/projects
+      - ${LIZMAP_PROJECTS}:/srv/projects
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
       - ${LIZMAP_DIR}/wps-data:/srv/data
     ports:
@@ -50,7 +50,7 @@ services:
       - redis_data:/data
   web:
     image: nginx:1
-    user: ${LIZMAP_USER_ID}:${LIZMAP_USER_ID}
+    user: ${LIZMAP_UID}:${LIZMAP_UID}
     volumes:
       - ${LIZMAP_DIR}/etc/nginx.conf:/etc/nginx/nginx.conf
       - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx

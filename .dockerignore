@@ -1,0 +1,10 @@
+.git
+.gitignore
+Makefile
+Dockerfile
+README.md
+env.windows
+/lizmap
+/.env
+Dockerfile.tmpl
+

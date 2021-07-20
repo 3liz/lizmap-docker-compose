@@ -1,0 +1,155 @@
+# This is the configuration for Porter
+# You must define steps for each action, but the rest is optional
+# See https://porter.sh/author-bundles for documentation on how to configure your bundle
+# Uncomment out the sections below to take full advantage of what Porter can do!
+
+name: porter-lizmap
+version: 0.1.0
+description: "Lizmap Porter configuration"
+# TODO: update the registry to your own, e.g. myregistry
+registry: 3liz
+
+# See https://porter.sh/custom-dockerfile/
+dockerfile: Dockerfile.porter
+
+required:
+- docker:
+    privileged: false
+
+mixins:
+- exec
+
+parameters:
+- name: destination
+  type: string
+  env: LIZMAP_INSTALL_DIR
+  applyTo:
+  - install
+  - upgrade
+- name: qgis_version
+  type: string
+  env: QGIS_VERSION_TAG
+  default: "3.16"
+  applyTo:
+  - install
+  - upgrade
+- name: lizmap_version
+  type: string
+  default: "3.4"
+  env: LIZMAP_VERSION_TAG
+  applyTo:
+  - install
+  - upgrade
+- name: postgis_version
+  type: string
+  default: "13-3"
+  env: POSTGIS_VERSION
+  applyTo:
+  - install
+  - upgrade
+- name: postgres_password
+  type: string
+  default: "postgres"
+  env: POSTGRES_PASSWORD
+  applyTo:
+  - install
+  - upgrade
+- name: qgis_workers
+  type: integer
+  default: 1
+  env: QGIS_MAP_WORKERS
+  applyTo:
+  - install
+  - upgrade
+- name: lizmap_port
+  type: string
+  default: "127.0.0.1:8090"
+  env: LIZMAP_PORT
+  applyTo:
+  - install
+  - upgrade
+- name: ows_port
+  type: string
+  default: "127.0.0.1:8091"
+  env: OWS_PORT
+  applyTo:
+  - install
+  - upgrade
+- name: postgres_port
+  type: string
+  default: "127.0.0.1:5432"
+  env: POSTGIS_PORT
+  applyTo:
+  - install
+  - upgrade
+- name: lizmapconfig
+  type: file
+  applyTo:
+  - uninstall
+  - start
+  - stop
+  path: /root/.lizmap-env
+  source:
+    output: lizmapconfig
+- name: service
+  type: string
+  default: ""
+  applyTo:
+  - start
+  - stop
+
+install:
+- exec:
+    description: "Building installer"
+    command: ./helpers.sh
+    arguments:
+    - build-installer
+- exec:
+    description: "Configuring"
+    command: ./helpers.sh
+    arguments:
+    - configure
+- exec:
+    command: ./helpers.sh
+    description: "Running lizmap"
+    arguments:
+    - run-services
+
+upgrade:
+- exec:
+    description: "Upgrading lizmap configuration"
+    command: ./helpers.sh
+    arguments:
+    - upgrade
+
+uninstall:
+- exec:
+    description: "Uninstall Hello World"
+    command: ./helpers.sh
+    arguments:
+    - uninstall
+
+stop:
+- exec:
+    description: "Stop the services"
+    command: ./helpers.sh
+    arguments:
+    - stop-services
+    - "{{ bundle.parameters.service }}"
+
+start:
+- exec:
+    description: "Stop the services"
+    command: ./helpers.sh
+    arguments:
+    - start-services
+    - "{{ bundle.parameters.service }}"
+
+outputs:
+- name: lizmapconfig
+  type: file
+  path: /root/.lizmap-env
+  applyTo:
+    - install
+    - upgrade
+
