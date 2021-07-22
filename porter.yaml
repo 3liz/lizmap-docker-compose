@@ -86,8 +86,12 @@ parameters:
   type: file
   applyTo:
   - uninstall
+  - upgrade
   - start
   - stop
+  - install-modules
+  - infos
+  - ps
   path: /root/.lizmap-env
   source:
     output: lizmapconfig
@@ -104,6 +108,11 @@ parameters:
   applyTo:
   - install
   - upgrade
+- name: modules
+  type: string
+  applyTo:
+    - install-modules
+
 
 install:
 - exec:
@@ -116,6 +125,7 @@ install:
     command: ./helpers.sh
     arguments:
     - configure
+    - "{{ installation.name }}"
 - exec:
     command: ./helpers.sh
     description: "Running lizmap"
@@ -152,6 +162,36 @@ start:
     - start-services
     - "{{ bundle.parameters.service }}"
 
+install-modules:
+- exec:
+    description: Install lizmap modules
+    command: ./helpers.sh
+    arguments:
+    - install-modules
+    - "{{ bundle.parameters.modules }}"
+
+infos:
+- exec:
+    command: ./helpers.sh
+    arguments:
+    - show-infos
+
+ps:
+- exec:
+    command: ./helpers.sh
+    arguments:
+    - compose-ps
+
+customActions:
+    infos:
+        description: Show infos
+        stateless: true
+        modifies: false
+    ps:
+        description: 
+        stateless: true
+        modifies: false
+
 outputs:
 - name: lizmapconfig
   type: file
@@ -159,4 +199,3 @@ outputs:
   applyTo:
     - install
     - upgrade
-

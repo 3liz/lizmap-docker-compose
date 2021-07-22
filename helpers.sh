@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export COMPOSE_PROJECT_NAME=$CNAB_INSTALLATION_NAME
+
+# The docker compose commande
+DOCKER_COMPOSE="docker-compose --env-file /root/.lizmap-env"
+
+# Actions
 
 build-installer() {
     docker build --rm \
@@ -27,26 +33,47 @@ configure() {
 }
 
 run-services() {
-    docker-compose --env-file /root/.lizmap-env up -d
+    $DOCKER_COMPOSE up -d
 }
 
 start-services() {
-    docker-compose --env-file /root/.lizmap-env start $1
+    $DOCKER_COMPOSE /root/.lizmap-env start $1
 }
 
 stop-services() {
-    docker-compose --env-file /root/.lizmap-env stop $1
+    $DOCKER_COMPOSE stop $1
+}
+
+install-modules() {
+    # Note: use -T since there is no TTY available
+    echo "Installing lizmap module $@"
+    $DOCKER_COMPOSE exec -T -- lizmap \
+        lizmap-install-module "$@"
+    echo "Updating lizmap installation"
+    $DOCKER_COMPOSE exec -T -- lizmap \
+        php /www/lizmap/install/installer.php
 }
 
 upgrade() {
     configure
-    docker-compose --env-file /root/.lizmap-env pull
-    docker-compose --env-file /root/.lizmap-env up -d --force-recreate
+    $DOCKER_COMPOSE pull
+    $DOCKER_COMPOSE up -d --force-recreate
 }
 
 uninstall() {
-    docker-compose --env-file /root/.lizmap-env down --remove-orphans -v
+    $DOCKER_COMPOSE down --remove-orphans -v
 }
+
+show-infos() {
+    cat /root/.lizmap-env
+    env
+}
+
+compose-ps() {
+    $DOCKER_COMPOSE ps    
+}
+
+
 
 # Call the requested function and pass the arguments as-is
 "$@"
