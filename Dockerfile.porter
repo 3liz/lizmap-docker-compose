@@ -1,0 +1,33 @@
+# vim: ft=dockerfile
+FROM debian:buster-slim
+
+ARG BUNDLE_DIR
+
+RUN apt-get update && apt-get install -y ca-certificates
+
+# This is a template Dockerfile for the bundle's invocation image
+# You can customize it to use different base images, install tools and copy configuration files.
+#
+# Porter will use it as a template and append lines to it for the mixins
+# and to set the CMD appropriately for the CNAB specification.
+#
+
+# Install Docker/docker-compose
+# Docker version and compose version is broken in docker-compose mixin
+ENV DOCKER_VERSION="20.10.7"
+RUN apt-get update && apt-get install -y python3-pip wget && pip3 install --upgrade pip && \
+  wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
+  tar -xvf docker-${DOCKER_VERSION}.tgz && \
+  mv docker/docker /usr/bin/docker && \
+  chmod +x /usr/bin/docker && \
+  rm -rf docker/ docker-${DOCKER_VERSION}.tgz && \
+  pip3 install docker-compose
+
+# You can control where the mixin's Dockerfile lines are inserted into this file by moving "# PORTER_MIXINS" line
+# another location in this file. If you remove that line, the mixins generated content is appended to this file.
+# PORTER_MIXINS
+
+# Use the BUNDLE_DIR build argument to copy files into the bundle
+COPY . $BUNDLE_DIR
+
+

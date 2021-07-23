@@ -22,13 +22,18 @@ Execute those commands above for your system and open your browser at http://loc
 
 ### Linux
 
-In command shell execute to test last version:
+In command shell configure the environment
 ```
-make start
+make configure
 ```
 Or if you want to test specific version (here last 3.3.x version):
 ```
-make start LIZMAP_VERSION_TAG=3.3
+make configure LIZMAP_VERSION_TAG=3.3
+```
+
+Run lizmap:
+```
+docker-compose up
 ```
 
 ### Windows
@@ -48,7 +53,7 @@ LIZMAP_VERSION_TAG=3.3
 
 ## Running the first time
 
-The command creates a docker-compose environnement and start the stack.
+The previous commands create a docker-compose environnement and run the stack
 
 The Lizmap service will start two toys projects that you will have to configure in the Lizmap
 interface.
@@ -92,15 +97,24 @@ change the host name alias of database (which default to `db.lizmap`)
 Example
 
 ```
-make env POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.name
+make configure POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.name
 ```
 
 The database will persist as named volume `postgis_data`.
 
-## References
+## Running lizmap as CNAB bundle app with Porter
+
+1. [Install porter (latest)](https://porter.sh/install/)
+2. Create the destination directory for installing lizmap files
+2. Execute `porter install --reference 3liz/porter-lizmap:v0.1.0 --param destination=<destination-dir> --allow-docker-host-access` 
+
+Note: if you install lizmap from the CNAB bundle you don't need to install docker-compose
+
+## Références
 
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
 
 Refs:
     - https://github.com/3liz/lizmap-web-client
     - https://github.com/3liz/py-qgis-server
+    - https://porter.sh/
