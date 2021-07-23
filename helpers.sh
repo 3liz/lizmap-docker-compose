@@ -19,6 +19,7 @@ configure() {
     -e LIZMAP_INSTALL_DIR \
     -e QGIS_VERSION_TAG \
     -e LIZMAP_VERSION_TAG \
+    -e LIZMAP_PLUGIN_VERSION \
     -e POSTGIS_VERSION \
     -e QGIS_MAP_WORKERS \
     -e LIZMAP_PORT \

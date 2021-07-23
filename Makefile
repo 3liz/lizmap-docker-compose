@@ -8,6 +8,7 @@ VERSION=latest
 LIZMAP_VERSION:=3.4
 QGIS_VERSION:=3.16
 POSTGIS_VERSION:=13-3
+LIZMAP_PLUGIN_VERSION:=3.5.4
 
 INSTALL_DIR:=$(shell pwd)/lizmap
 
@@ -20,6 +21,7 @@ configure:
 	QGIS_VERSION_TAG=$(QGIS_VERSION) \
 	POSTGIS_VERSION=$(POSTGIS_VERSION) \
 	LIZMAP_INSTALL_DIR=$(INSTALL_DIR) \
+	LIZMAP_PLUGIN_VERSION=$(LIZMAP_PLUGIN_VERSION) \
 	./entrypoint.sh configure
 	@cp lizmap/.env ./
 	@echo "Execute 'docker-compose up' to run lizmap"

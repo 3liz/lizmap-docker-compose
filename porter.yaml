@@ -40,6 +40,13 @@ parameters:
   applyTo:
   - install
   - upgrade
+- name: lizmap_plugin_version
+  type: string
+  default: "3.5.4"
+  env: LIZMAP_PLUGIN_VERSION
+  applyTo:
+  - install
+  - upgrade
 - name: postgis_version
   type: string
   default: "13-3"
