@@ -38,6 +38,8 @@ docker-compose up
 
 ### Windows
 
+In order to user Docker on Windows you must install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+
 You can execute same commands as Linux part given above if you use `make` (optional).
 
 Or in command powershell execute:
@@ -114,7 +116,14 @@ Note: if you install lizmap from the CNAB bundle you don't need to install docke
 
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
 
-Refs:
-    - https://github.com/3liz/lizmap-web-client
-    - https://github.com/3liz/py-qgis-server
-    - https://porter.sh/
+See also:
+
+- https://github.com/3liz/lizmap-web-client
+- https://github.com/3liz/py-qgis-server
+- https://porter.sh/
+
+Docker on Windows:
+
+- https://docs.docker.com/desktop/windows/
+- https://docs.microsoft.com/fr-fr/windows/dev-environment/docker/overview
+
