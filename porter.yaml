@@ -4,7 +4,7 @@
 # Uncomment out the sections below to take full advantage of what Porter can do!
 
 name: porter-lizmap
-version: 0.1.0
+version: 0.2.0
 description: "Lizmap Porter configuration"
 # TODO: update the registry to your own, e.g. myregistry
 registry: 3liz
@@ -99,6 +99,8 @@ parameters:
   - install-modules
   - infos
   - ps
+  - logs
+  - env
   path: /root/.lizmap-env
   source:
     output: lizmapconfig
@@ -108,6 +110,7 @@ parameters:
   applyTo:
   - start
   - stop
+  - logs
 - name: profiles
   type: string
   default: ""
@@ -177,11 +180,11 @@ install-modules:
     - install-modules
     - "{{ bundle.parameters.modules }}"
 
-infos:
+env:
 - exec:
     command: ./helpers.sh
     arguments:
-    - show-infos
+    - show-config
 
 ps:
 - exec:
@@ -189,13 +192,24 @@ ps:
     arguments:
     - compose-ps
 
+logs:
+- exec:
+    command: ./helpers.sh
+    arguments:
+    - compose-logs
+    - "{{ bundle.parameters.service }}"
+
 customActions:
-    infos:
+    env:
         description: Show infos
         stateless: true
         modifies: false
     ps:
-        description: 
+        description: List services
+        stateless: true
+        modifies: false
+    logs:
+        description: Fetch the logs of a service
         stateless: true
         modifies: false
 

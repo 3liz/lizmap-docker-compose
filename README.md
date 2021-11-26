@@ -108,9 +108,13 @@ The database will persist as named volume `postgis_data`.
 
 1. [Install porter (latest)](https://porter.sh/install/)
 2. Create the destination directory for installing lizmap files
-2. Execute `porter install --reference 3liz/porter-lizmap:v0.1.0 --param destination=<destination-dir> --allow-docker-host-access` 
+2. Execute `porter install --reference 3liz/porter-lizmap:latest --param destination=<destination-dir> --allow-docker-host-access` 
+
+where `destination-dir` must be an absolute path.
 
 Note: if you install lizmap from the CNAB bundle you don't need to install docker-compose
+
+Hint: Create `~/.porter/config.toml` (chmod 600) with the line `allow-docker-host-access = true`
 
 ## Références
 

@@ -65,15 +65,21 @@ uninstall() {
     $DOCKER_COMPOSE down --remove-orphans -v
 }
 
-show-infos() {
+show-config() {
+    echo "== Docker compose environment =="
     cat /root/.lizmap-env
+    echo 
+    echo "== System environment =="
     env
 }
 
 compose-ps() {
-    $DOCKER_COMPOSE ps    
+    $DOCKER_COMPOSE ps
 }
 
+compose-logs() {
+    $DOCKER_COMPOSE logs $1
+}
 
 
 # Call the requested function and pass the arguments as-is
