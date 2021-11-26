@@ -1,0 +1,34 @@
+[general]
+name=Lizmap
+qgisMinimumVersion=3.4
+qgisMaximumVersion=3.99
+author=3Liz
+email=info@3liz.com
+description=Publish and share your QGIS maps on the Web via Lizmap Web Client, by 3liz.com
+about=With a few clicks, it's possible to publish and share your QGIS projects on the Web via Lizmap Web Client, by 3liz.com. QGIS Server is used in the background so all the symbology is kept. The edition forms in QGIS are also available. Demo : https://demo.lizmap.com and documentation : https://docs.lizmap.com and hosting solutions https://lizmap.com
+category=Web
+version=3.5.4
+changelog=
+ Version 3.5.4:
+ * Fix the visibility used on container in QGIS Form with level upper than 1
+ * Server - Always log when there is a Python exception
+ * Server - Make the plugin compatible Python 3.5
+ * Server - Rename variable about conflict
+
+ Version 3.5.3:
+ * Refactor some imports and class names in the server part
+
+ Version 3.5.2:
+ * Fix an issue on QGIS Desktop about a Python exception again
+
+
+tags=online,server,web,webgis,webservice,webmapping,mobile,publication,wms,wfs,wps,internet,cloud,dashboard
+
+homepage=https://docs.lizmap.com
+tracker=https://github.com/3liz/lizmap-plugin/issues
+repository=https://github.com/3liz/lizmap-plugin
+
+icon=resources/icons/icon.png
+experimental=False
+deprecated=False
+server=True
