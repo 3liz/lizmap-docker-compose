@@ -26,9 +26,9 @@ In command shell configure the environment
 ```
 make configure
 ```
-Or if you want to test specific version (here last 3.3.x version):
+Or if you want to test specific version (here last 3.4.x version):
 ```
-make configure LIZMAP_VERSION_TAG=3.3
+make configure LIZMAP_VERSION_TAG=3.4
 ```
 
 Run lizmap:
@@ -47,10 +47,10 @@ Or in command powershell execute:
 ```
 docker-compose --env-file .env.windows up
 ```
-Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.3.x version):
+Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.4.x version):
 
 ```
-LIZMAP_VERSION_TAG=3.3
+LIZMAP_VERSION_TAG=3.4
 ```
 
 ## Running the first time

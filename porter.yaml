@@ -29,20 +29,20 @@ parameters:
 - name: qgis_version
   type: string
   env: QGIS_VERSION_TAG
-  default: "3.16"
+  default: "3.22"
   applyTo:
   - install
   - upgrade
 - name: lizmap_version
   type: string
-  default: "3.4"
+  default: "3.5"
   env: LIZMAP_VERSION_TAG
   applyTo:
   - install
   - upgrade
 - name: lizmap_plugin_version
   type: string
-  default: "3.5.4"
+  default: "3.7.4"
   env: LIZMAP_PLUGIN_VERSION
   applyTo:
   - install
