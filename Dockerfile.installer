@@ -11,7 +11,7 @@ RUN apk --update --no-cache add su-exec bash unzip wget
 ENV INSTALL_DEST=/lizmap \
     INSTALL_SOURCE=/lizmap.install \
     COPY_COMPOSE_FILE=yes \
-    LIZMAP_PLUGIN_VERSION=3.5.4
+    LIZMAP_PLUGIN_VERSION=3.7.4
 
 COPY entrypoint.sh env.default docker-compose.yml  /lizmap.install/
 COPY lizmap.dir /lizmap.install/lizmap.dir
