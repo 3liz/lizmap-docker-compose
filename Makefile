@@ -23,7 +23,8 @@ configure:
 	LIZMAP_INSTALL_DIR=$(INSTALL_DIR) \
 	LIZMAP_PLUGIN_VERSION=$(LIZMAP_PLUGIN_VERSION) \
 	./entrypoint.sh configure
-	@cp lizmap/.env ./
+	@rm -f ./.env
+	@ ln -sf  $(INSTALL_DIR)/.env
 	@echo "Execute 'docker-compose up' to run lizmap"
 
 
