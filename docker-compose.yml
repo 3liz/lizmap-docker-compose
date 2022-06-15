@@ -15,6 +15,7 @@ services:
     volumes:
       - ${LIZMAP_PROJECTS}:/srv/projects
       - ${LIZMAP_DIR}/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
+      - ${LIZMAP_DIR}/var/lizmap-themes-default:/www/lizmap/var/themes/default
       - ${LIZMAP_DIR}/var/lizmap-config:/www/lizmap/var/config
       - ${LIZMAP_DIR}/var/lizmap-db:/www/lizmap/var/db
       - ${LIZMAP_DIR}/www:/www/lizmap/www
