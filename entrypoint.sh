@@ -39,6 +39,7 @@ _makedirs() {
              $INSTALL_DEST/var/log/nginx \
              $INSTALL_DEST/var/nginx-cache \
              $INSTALL_DEST/var/lizmap-theme-config \
+	     $INSTALL_DEST/var/lizmap-themes-default \
              $INSTALL_DEST/var/lizmap-db \
              $INSTALL_DEST/var/lizmap-config \
              $INSTALL_DEST/var/lizmap-modules \
