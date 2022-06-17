@@ -13,21 +13,8 @@ if [ ! -d $INSTALL_DEST ]; then
     exit 1
 fi
 
-if [ "$(id -u)" = '0' ]; then
-    export LIZMAP_UID=$(stat -c '%u' $INSTALL_DEST)
-    export LIZMAP_GID=$(stat -c '%g' $INSTALL_DEST)
-    # Warn if the destination is owned by
-    # Root, this may indicates that the directory was created
-    # at binding
-    if [ "$LIZMAP_UID" = '0' ]; then
-        echo "WARNING: Your destination directory is owned by 'root'"
-    else
-        SUEXEC="su-exec $LIZMAP_UID:$LIZMAP_GID"
-    fi
-else
-    export LIZMAP_UID=$(id -u)
-    export LIZMAP_GID=$(id -g)
-fi
+export LIZMAP_UID=$(id -u)
+export LIZMAP_GID=$(id -g)
 
 #
 # Commands

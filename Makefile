@@ -21,15 +21,15 @@ configure:
 	POSTGIS_VERSION=$(POSTGIS_VERSION) \
 	LIZMAP_INSTALL_DIR=$(INSTALL_DIR) \
 	LIZMAP_PLUGIN_VERSION=$(LIZMAP_PLUGIN_VERSION) \
-	./entrypoint.sh configure
+	./configure.sh configure
 	@rm -f ./.env
 	@ ln -sf  $(INSTALL_DIR)/.env
-	@echo "Execute 'docker-compose up' to run lizmap"
+	@echo "Execute 'docker compose up' to run lizmap"
 
 
 clean:
 	@INSTALL_DEST=$(INSTALL_DIR) \
-	./entrypoint.sh clean
+	./configure.sh clean
 
 build-installer:
 	docker build --rm \
