@@ -27,6 +27,7 @@ services:
     restart: unless-stopped
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
+    command: qgisserver -c /srv/etc/py-qgis-server.conf
     environment:
       QGSRV_CACHE_SIZE: '20'
       QGSRV_CACHE_ROOTDIR: /srv/projects
@@ -37,8 +38,10 @@ services:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGSPASSFILE: /srv/etc/pgpass.conf
       QGIS_OPTIONS_PATH: /srv/etc/qgis
+      QGIS_SERVER_LIZMAP_REVEAL_SETTINGS: 'True'
     volumes:
       - ${LIZMAP_PROJECTS}:/srv/projects
+      - ${LIZMAP_DIR}/plugins:/srv/plugins
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
       - ${LIZMAP_DIR}/wps-data:/srv/data
     ports:
