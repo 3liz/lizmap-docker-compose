@@ -13,7 +13,7 @@ your production requirements.
 ## Requirements
 
 - Docker engine
-- docker-compose
+- docker-compose v2 
 - make (optional in Windows)
 
 ## Quick start
@@ -33,7 +33,7 @@ make configure LIZMAP_VERSION_TAG=3.4
 
 Run lizmap:
 ```
-docker-compose up
+docker compose up
 ```
 
 ### Windows
@@ -45,7 +45,7 @@ You can execute same commands as Linux part given above if you use `make` (optio
 Or in command powershell execute:
 
 ```
-docker-compose --env-file .env.windows up
+docker compose --env-file .env.windows up
 ```
 Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.4.x version):
 
@@ -90,7 +90,7 @@ Postgis service may be activated by using the [profile option in docker-compose]
 Example:
 
 ```
-docker-compose --profile postgis up
+docker compose --profile postgis up
 ```
 
 Note that the default admin password will be `postgres` and may be changed when creating the environment. You may also
@@ -104,18 +104,6 @@ make configure POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.na
 
 The database will persist as named volume `postgis_data`.
 
-## Running lizmap as CNAB bundle app with Porter
-
-1. [Install porter (latest)](https://porter.sh/install/)
-2. Create the destination directory for installing lizmap files
-2. Execute `porter install --reference 3liz/porter-lizmap:latest --param destination=<destination-dir> --allow-docker-host-access` 
-
-where `destination-dir` must be an absolute path.
-
-Note: if you install lizmap from the CNAB bundle you don't need to install docker-compose
-
-Hint: Create `~/.porter/config.toml` (chmod 600) with the line `allow-docker-host-access = true`
-
 ## Références
 
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
@@ -124,7 +112,6 @@ See also:
 
 - https://github.com/3liz/lizmap-web-client
 - https://github.com/3liz/py-qgis-server
-- https://porter.sh/
 
 Docker on Windows:
 
