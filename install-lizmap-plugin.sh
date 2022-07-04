@@ -7,3 +7,5 @@
 qgis-plugin-manager init
 qgis-plugin-manager update
 qgis-plugin-manager install "Lizmap server"
+qgis-plugin-manager install atlasprint
+qgis-plugin-manager install wfsOutputExtension
