@@ -24,6 +24,9 @@ services:
       - ${LIZMAP_DIR}/etc:/srv/etc:ro
     command:
       - php-fpm
+    depends_on:
+      postgis:
+        condition: service_healthy
     restart: unless-stopped
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
@@ -67,16 +70,23 @@ services:
     image: 3liz/postgis:${POSTGIS_VERSION}
     volumes:
       - postgis_data:/var/lib/postgresql/data
+      - ${LIZMAP_DIR}/etc/postgres.init.d:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_LIZMAP_DB: ${POSTGRES_LIZMAP_DB}
+      POSTGRES_LIZMAP_USER: ${POSTGRES_LIZMAP_USER}
+      POSTGRES_LIZMAP_PASSWORD: ${POSTGRES_LIZMAP_PASSWORD}
     ports:
       - ${POSTGIS_PORT}:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ${POSTGRES_LIZMAP_DB} -q || exit 1"]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
     networks:
       default:
         aliases:
           - ${POSTGIS_ALIAS}
-    profiles:
-      - postgis
 
 volumes:
     postgis_data:
