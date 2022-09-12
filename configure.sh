@@ -92,6 +92,7 @@ _install-plugin() {
     local plugindir=$INSTALL_DEST/plugins
     docker run -it \
         -u $(id -u):$(id -g) \
+        --rm \
         -e QGSRV_SERVER_PLUGINPATH=/srv/plugins \
         -v $plugindir:/srv/plugins \
         -v $scriptdir:/src \
