@@ -22,7 +22,7 @@ Execute those commands above for your system and open your browser at http://loc
 
 ### Linux
 
-In command shell configure the environment
+In a shell, configure the environment:
 ```
 make configure
 ```
@@ -55,7 +55,7 @@ LIZMAP_VERSION_TAG=3.4
 
 ## Running the first time
 
-The previous commands create a docker-compose environnement and run the stack
+The previous commands create a docker-compose environment and run the stack
 
 The Lizmap service will start two toys projects that you will have to configure in the Lizmap
 interface.
@@ -104,7 +104,7 @@ make configure POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.na
 
 The database will persist as named volume `postgis_data`.
 
-## Références
+## References
 
 For more information, refer to the [docker-compose documentation](https://docs.docker.com/compose/)
 
@@ -117,4 +117,3 @@ Docker on Windows:
 
 - https://docs.docker.com/desktop/windows/
 - https://docs.microsoft.com/fr-fr/windows/dev-environment/docker/overview
-
