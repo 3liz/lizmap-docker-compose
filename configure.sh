@@ -36,7 +36,7 @@ _makedirs() {
 
 _makenv() {
     source $INSTALL_SOURCE/env.default
-    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_INSTALL_DIR/instances"} 
+    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_INSTALL_DIR/instances"}
     cat > $INSTALL_DEST/.env <<-EOF
 		LIZMAP_PROJECTS=$LIZMAP_PROJECTS
 		LIZMAP_DIR=$LIZMAP_INSTALL_DIR
@@ -157,4 +157,3 @@ clean() {
 
 
 "$@"
-
