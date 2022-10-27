@@ -31,20 +31,4 @@ clean:
 	@INSTALL_DEST=$(INSTALL_DIR) \
 	./configure.sh clean
 
-build-installer:
-	docker build --rm \
-		-t $(NAME):$(VERSION) \
-		-t $(NAME):latest -f Dockerfile.installer .
-
-# Test installation from installer
-run-installer:
-	mkdir -p $(INSTALL_DIR)
-	docker run -it --rm --name lizmap-installer \
-	-e LIZMAP_VERSION_TAG=$(LIZMAP_VERSION) \
-	-e QGIS_VERSION_TAG=$(QGIS_VERSION) \
-	-e POSTGIS_VERSION=$(POSTGIS_VERSION) \
-	-e LIZMAP_INSTALL_DIR=$(INSTALL_DIR) \
-	-v $(INSTALL_DIR):/lizmap \
-	$(NAME):$(VERSION) configure
-
 
