@@ -24,11 +24,11 @@ Execute those commands above for your system and open your browser at http://loc
 
 In a shell, configure the environment:
 ```
-make configure
+./configure.sh configure
 ```
 Or if you want to test specific version (here last 3.4.x version):
 ```
-make configure LIZMAP_VERSION_TAG=3.4
+LIZMAP_VERSION_TAG=3.4 ./configure.sh configure
 ```
 
 Run lizmap:
@@ -38,9 +38,9 @@ docker compose up
 
 ### Windows
 
-In order to user Docker on Windows you must install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+In order to user Docker on Windows you may install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/)
 
-You can execute same commands as Linux part given above if you use `make` (optional).
+You can execute same commands as Linux part given above.
 
 Or in command powershell execute:
 
@@ -77,7 +77,7 @@ You need to :
 In command line
 
 ```
-make clean 
+./configure.sh  clean 
 ```
 
 This will remove all previous configuration. You will have to reenter the configuration in Lizmap
