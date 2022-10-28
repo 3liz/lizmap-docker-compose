@@ -6,7 +6,7 @@
 set -e
 
 if [ -z $INSTALL_DEST ]; then
-# Define default install destination as currunt directory
+# Define default install destination as current directory
 INSTALL_DEST=$(pwd)/lizmap
 mkdir -p $INSTALL_DEST
 fi
@@ -38,10 +38,10 @@ _makedirs() {
 
 _makenv() {
     source $INSTALL_SOURCE/env.default
-    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$INSTALL_DEST/instances"}
+    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_DIR/instances"}
     cat > $INSTALL_DEST/.env <<-EOF
 		LIZMAP_PROJECTS=$LIZMAP_PROJECTS
-		LIZMAP_DIR=$INSTALL_DEST
+		LIZMAP_DIR=$LIZMAP_DIR
 		LIZMAP_UID=$LIZMAP_UID
 		LIZMAP_GID=$LIZMAP_GID
 		LIZMAP_VERSION_TAG=$LIZMAP_VERSION_TAG
@@ -95,6 +95,12 @@ _install-plugin() {
 _configure() {
 
     #
+    # Create env file
+    #
+    echo "Creating env file"
+    _makenv
+
+    #
     # Copy configuration and create directories
     #
     echo "Copying files"
@@ -126,17 +132,14 @@ _configure() {
 configure() {
     echo "=== Configuring lizmap in $INSTALL_DEST"
 
-    #
-    # Create env file
-    #
-    echo "Creating env file"
-    _makenv
+    source $INSTALL_SOURCE/env.default
 
     docker run -it \
         -u $LIZMAP_UID:$LIZMAP_GID \
         --rm \
         -e INSTALL_SOURCE=/install \
         -e INSTALL_DEST=/lizmap \
+        -e LIZMAP_DIR=$INSTALL_DEST \
         -e QGSRV_SERVER_PLUGINPATH=/lizmap/plugins \
         -v $INSTALL_SOURCE:/install \
         -v $INSTALL_DEST:/lizmap \
