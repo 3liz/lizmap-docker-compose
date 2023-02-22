@@ -31,19 +31,19 @@ services:
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
     environment:
+      PGSERVICEFILE: /srv/etc/pg_service.conf
+      PGSPASSFILE: /srv/etc/pgpass.conf
+      QGIS_OPTIONS_PATH: /srv/etc/qgis
+      QGIS_SERVER_LIZMAP_REVEAL_SETTINGS: 'yes'
       QGSRV_API_ENABLED_LIZMAP: 'yes'
       QGSRV_CACHE_SIZE: '20'
       QGSRV_CACHE_STRICT_CHECK: 'no'
       QGSRV_CACHE_ROOTDIR: /srv/projects
-      QGSRV_USER: ${LIZMAP_UID}:${LIZMAP_GID}
       QGSRV_LOGGING_LEVEL: DEBUG
-      QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
+      QGSRV_USER: ${LIZMAP_UID}:${LIZMAP_GID}
       QGSRV_SERVER_PLUGINPATH: /srv/plugins
       QGSRV_SERVER_RESTARTMON: /srv/.qgis-restart
-      PGSERVICEFILE: /srv/etc/pg_service.conf
-      PGSPASSFILE: /srv/etc/pgpass.conf
-      QGIS_OPTIONS_PATH: /srv/etc/qgis
-      QGIS_SERVER_LIZMAP_REVEAL_SETTINGS: 'True'
+      QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
     volumes:
       - ${LIZMAP_PROJECTS}:/srv/projects
       - ${LIZMAP_DIR}/plugins:/srv/plugins
