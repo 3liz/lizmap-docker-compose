@@ -33,6 +33,7 @@ services:
     environment:
       QGSRV_API_ENABLED_LIZMAP: 'yes'
       QGSRV_CACHE_SIZE: '20'
+      QGSRV_CACHE_STRICT_CHECK: 'no'
       QGSRV_CACHE_ROOTDIR: /srv/projects
       QGSRV_USER: ${LIZMAP_UID}:${LIZMAP_GID}
       QGSRV_LOGGING_LEVEL: DEBUG
