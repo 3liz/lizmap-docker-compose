@@ -27,9 +27,9 @@ In a shell, configure the environment:
 ```
 ./configure.sh configure
 ```
-Or if you want to test specific version (here last 3.4.x version):
+Or if you want to test specific version (here last 3.6.x version):
 ```
-LIZMAP_VERSION_TAG=3.4 ./configure.sh configure
+LIZMAP_VERSION_TAG=3.6 ./configure.sh configure
 ```
 
 Run lizmap:
@@ -48,10 +48,10 @@ Or in command powershell execute:
 ```
 docker compose --env-file .env.windows up
 ```
-Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.4.x version):
+Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.6.x version):
 
 ```
-LIZMAP_VERSION_TAG=3.4
+LIZMAP_VERSION_TAG=3.6
 ```
 
 ## Running the first time
