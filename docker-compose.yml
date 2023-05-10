@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
@@ -13,15 +13,15 @@ services:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGPASSFILE: /srv/etc/pgpass.conf
     volumes:
-      - ${LIZMAP_PROJECTS}:/srv/projects
-      - ${LIZMAP_DIR}/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
-      - ${LIZMAP_DIR}/var/lizmap-config:/www/lizmap/var/config
-      - ${LIZMAP_DIR}/var/lizmap-db:/www/lizmap/var/db
-      - ${LIZMAP_DIR}/www:/www/lizmap/www
-      - ${LIZMAP_DIR}/www/var/log:/www/lizmap/var/log
-      - ${LIZMAP_DIR}/var/lizmap-modules:/www/lizmap/lizmap-modules
-      - ${LIZMAP_DIR}/var/lizmap-my-packages:/www/lizmap/my-packages
-      - ${LIZMAP_DIR}/etc:/srv/etc:ro
+      - { type: bind, source: "${LIZMAP_PROJECTS}", target: /srv/projects }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-theme-config", target: /www/lizmap/var/lizmap-theme-config }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-config", target: /www/lizmap/var/config }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-db",     target: /www/lizmap/var/db }
+      - { type: bind, source: "${LIZMAP_DIR}/www", target: /www/lizmap/www }
+      - { type: bind, source: "${LIZMAP_DIR}/www/var/log", target: /www/lizmap/var/log }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-modules", target: /www/lizmap/lizmap-modules }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-my-packages", target: /www/lizmap/my-packages }
+      - { type: bind, source: "${LIZMAP_DIR}/etc", target: /srv/etc, read_only: true }
     command:
       - php-fpm
     depends_on:
@@ -45,24 +45,24 @@ services:
       QGSRV_SERVER_RESTARTMON: /srv/.qgis-restart
       QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
     volumes:
-      - ${LIZMAP_PROJECTS}:/srv/projects
-      - ${LIZMAP_DIR}/plugins:/srv/plugins
-      - ${LIZMAP_DIR}/wps-data:/srv/data
+      - { type: bind, source: "${LIZMAP_PROJECTS}", target: /srv/projects }
+      - { type: bind, source: "${LIZMAP_DIR}/plugins", target: /srv/plugins }
+      - { type: bind, source: "${LIZMAP_DIR}/wps-data", target: /srv/data }
     ports:
       - ${OWS_PORT}:8080
     restart: unless-stopped
   redis:
     image: redis:5-alpine
     volumes:
-      - redis_data:/data
+      - { type: volume, source: redis_data, target: /data }
   web:
     image: nginx:alpine
     user: ${LIZMAP_UID}:${LIZMAP_GID}
     volumes:
-      - ${LIZMAP_DIR}/etc/nginx.conf:/etc/nginx/nginx.conf
-      - ${LIZMAP_DIR}/var/log/nginx:/var/log/nginx
-      - ${LIZMAP_DIR}/var/nginx-cache:/var/cache/nginx
-      - ${LIZMAP_DIR}:/srv/lizmap
+      - { type: bind, source: "${LIZMAP_DIR}/etc/nginx.conf", target: /etc/nginx/nginx.conf }
+      - { type: bind, source: "${LIZMAP_DIR}/var/log/nginx", target: /var/log/nginx }
+      - { type: bind, source: "${LIZMAP_DIR}/var/nginx-cache", target: /var/cache/nginx }
+      - { type: bind, source: "${LIZMAP_DIR}", target: /srv/lizmap }
     ports:
       - ${LIZMAP_PORT}:8080
     depends_on:
@@ -70,8 +70,8 @@ services:
   postgis:
     image: 3liz/postgis:${POSTGIS_VERSION}
     volumes:
-      - postgis_data:/var/lib/postgresql/data
-      - ${LIZMAP_DIR}/etc/postgres.init.d:/docker-entrypoint-initdb.d
+      - { type: volume, source: postgis_data, target: /var/lib/postgresql/data }
+      - { type: bind, source: "${LIZMAP_DIR}/etc/postgres.init.d", target: /docker-entrypoint-initdb.d }
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_LIZMAP_DB: ${POSTGRES_LIZMAP_DB}
