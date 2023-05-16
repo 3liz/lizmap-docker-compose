@@ -8,7 +8,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 EOSQL
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_LIZMAP_DB" <<-EOSQL
-        CREATE EXTENSION "postgis";
-        CREATE EXTENSION "postgis_raster";
+        CREATE EXTENSION IF NOT EXISTS "postgis";
+        CREATE EXTENSION IF NOT EXISTS "postgis_raster";
         CREATE SCHEMA "lizmap" AUTHORIZATION "$POSTGRES_LIZMAP_USER";
 EOSQL
