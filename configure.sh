@@ -38,6 +38,10 @@ _makedirs() {
 
 _makenv() {
     source $INSTALL_SOURCE/env.default
+    if [ "$LIZMAP_CUSTOM_ENV" = "1" ]; then
+        echo "Copying custom environment"
+        cp $INSTALL_SOURCE/env.default $INSTALL_DEST/.env
+    else
     LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_DIR/instances"}
     cat > $INSTALL_DEST/.env <<-EOF
 		LIZMAP_PROJECTS=$LIZMAP_PROJECTS
@@ -59,9 +63,12 @@ _makenv() {
 		POSTGIS_PORT=$POSTGIS_PORT
 		POSTGIS_ALIAS=$POSTGIS_ALIAS
 		EOF
+    fi
 }
 
 _makepgservice() {
+# Do NOT override existing pg_service.conf
+if [ ! -e $INSTALL_DEST/etc/pg_service.conf ]; then
     cat > $INSTALL_DEST/etc/pg_service.conf <<-EOF
 [lizmap_local]
 host=$POSTGIS_ALIAS
@@ -71,6 +78,7 @@ user=$POSTGRES_LIZMAP_USER
 password=$POSTGRES_LIZMAP_PASSWORD
 EOF
     chmod 0600 $INSTALL_DEST/etc/pg_service.conf
+fi
 }
 
 _makelizmapprofiles() {
