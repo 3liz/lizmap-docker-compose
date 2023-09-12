@@ -48,6 +48,7 @@ services:
       - { type: bind, source: "${LIZMAP_PROJECTS}", target: /srv/projects }
       - { type: bind, source: "${LIZMAP_DIR}/plugins", target: /srv/plugins }
       - { type: bind, source: "${LIZMAP_DIR}/wps-data", target: /srv/data }
+      - { type: bind, source: "${LIZMAP_DIR}/etc", target: /srv/etc, read_only: true }
     ports:
       - ${OWS_PORT}:8080
     restart: unless-stopped
