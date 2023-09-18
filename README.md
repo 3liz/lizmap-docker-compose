@@ -8,8 +8,8 @@ Run a complete Lizmap stack with test data.
 
 **Note**: this is a sample configuration for testing Lizmap web client with QGIS and WPS features.
 
-❗**If you want use it on a production server you will need to make adjustments for meeting 
-your production requirements.**
+❗**If you want to use it on a production server, you will need to make adjustments to meet your
+production requirements.**
 
 ## Requirements
 
