@@ -34,6 +34,7 @@ LIZMAP_VERSION_TAG=3.6 ./configure.sh configure
 
 Run lizmap:
 ```
+docker compose pull
 docker compose up
 ```
 
