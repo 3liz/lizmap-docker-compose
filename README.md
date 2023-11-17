@@ -15,7 +15,6 @@ production requirements.**
 
 - Docker engine
 - docker-compose v2 
-- make (optional in Windows)
 
 ## Quick start
 
