@@ -42,11 +42,15 @@ docker compose up
 
 In order to user Docker on Windows you may install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/)
 
-You can execute same commands as Linux part given above.
 
-Or in command powershell execute:
+If you have some distribution installed (Ubuntu, ...) in WSL, you can simply run the linux command as above, once in it.
 
-```
+Or in PowerShell, run the folloinwg command to set up some files
+``` 
+configure.bat
+``` 
+You can then launch the docker using
+``` 
 docker compose --env-file .env.windows up
 ```
 Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.6.x version):
