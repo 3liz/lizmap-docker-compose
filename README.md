@@ -15,11 +15,10 @@ production requirements.**
 
 - Docker engine
 - docker-compose v2 
-- make (optional in Windows)
 
 ## Quick start
 
-Execute those commands above for your system and open your browser at http://localhost:8090.
+Execute the commands below for your system and open your browser at http://localhost:8090.
 
 ### Linux
 
@@ -36,6 +35,11 @@ Run lizmap:
 ```
 docker compose pull
 docker compose up
+```
+
+To run lizmap visible to another system, prefix the docker command with a variable. NB! This will be plain HTTP with no encryption and not suitable for production.
+```
+LIZMAP_PORT=EXTERNAL_IP_HERE:80 docker compose up
 ```
 
 ### Windows
