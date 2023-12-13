@@ -26,12 +26,12 @@ _makedirs() {
     mkdir -p $INSTALL_DEST/plugins \
              $INSTALL_DEST/processing \
              $INSTALL_DEST/wps-data \
-             $INSTALL_DEST/www/var/log \
              $INSTALL_DEST/var/log/nginx \
              $INSTALL_DEST/var/nginx-cache \
              $INSTALL_DEST/var/lizmap-theme-config \
              $INSTALL_DEST/var/lizmap-db \
              $INSTALL_DEST/var/lizmap-config \
+             $INSTALL_DEST/var/lizmap-log \
              $INSTALL_DEST/var/lizmap-modules \
              $INSTALL_DEST/var/lizmap-my-packages
 }

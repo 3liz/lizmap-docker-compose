@@ -17,8 +17,8 @@ services:
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-theme-config", target: /www/lizmap/var/lizmap-theme-config }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-config", target: /www/lizmap/var/config }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-db",     target: /www/lizmap/var/db }
+      - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-log",     target: /www/lizmap/var/log }
       - { type: bind, source: "${LIZMAP_DIR}/www", target: /www/lizmap/www }
-      - { type: bind, source: "${LIZMAP_DIR}/www/var/log", target: /www/lizmap/var/log }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-modules", target: /www/lizmap/lizmap-modules }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-my-packages", target: /www/lizmap/my-packages }
       - { type: bind, source: "${LIZMAP_DIR}/etc", target: /srv/etc, read_only: true }
