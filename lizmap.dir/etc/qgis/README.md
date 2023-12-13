@@ -1,0 +1,1 @@
+Qgis needs this directory when `QGIS_OPTIONS_PATH: /srv/etc/qgis`
