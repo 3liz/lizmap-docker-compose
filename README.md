@@ -23,22 +23,22 @@ Execute the commands below for your system and open your browser at http://local
 ### Linux
 
 In a shell, configure the environment:
-```
+```bash
 ./configure.sh configure
 ```
-Or if you want to test specific version (here last 3.6.x version):
-```
-LIZMAP_VERSION_TAG=3.6 ./configure.sh configure
+Or if you want to test specific version (here last 3.7.x version):
+```bash
+LIZMAP_VERSION_TAG=3.7 ./configure.sh configure
 ```
 
 Run lizmap:
-```
+```bash
 docker compose pull
 docker compose up
 ```
 
 To run lizmap visible to another system, prefix the docker command with a variable. NB! This will be plain HTTP with no encryption and not suitable for production.
-```
+```bash
 LIZMAP_PORT=EXTERNAL_IP_HERE:80 docker compose up
 ```
 
@@ -49,18 +49,18 @@ In order to user Docker on Windows you may install [Docker desktop for Windows](
 
 If you have some distribution installed (Ubuntu, ...) in WSL, you can simply run the linux command as above, once in it.
 
-Or in PowerShell, run the folloinwg command to set up some files
-``` 
+Or in PowerShell, run the following command to set up some files
+```bash
 configure.bat
 ``` 
 You can then launch the docker using
-``` 
+```bash
 docker compose --env-file .env.windows up
 ```
-Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.6.x version):
+Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.7.x version):
 
-```
-LIZMAP_VERSION_TAG=3.6
+```bash
+LIZMAP_VERSION_TAG=3.7
 ```
 
 ## Running the first time
@@ -86,7 +86,7 @@ You need to :
 
 In command line
 
-```
+```bash
 ./configure.sh  clean 
 ```
 
