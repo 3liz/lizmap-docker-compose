@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
