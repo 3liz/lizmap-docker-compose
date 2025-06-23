@@ -28,7 +28,7 @@ In a shell, configure the environment:
 ```
 Or if you want to test specific version (here last 3.X.Y version):
 ```bash
-LIZMAP_VERSION_TAG=3.8 ./configure.sh configure
+LIZMAP_VERSION_TAG=3.9 ./configure.sh configure
 ```
 
 Run lizmap:
@@ -60,7 +60,7 @@ docker compose --env-file .env.windows up
 Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.X.Y version):
 
 ```bash
-LIZMAP_VERSION_TAG=3.8
+LIZMAP_VERSION_TAG=3.9
 ```
 
 ## Running the first time
