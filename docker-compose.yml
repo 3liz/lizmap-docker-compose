@@ -68,7 +68,6 @@ services:
     depends_on:
       - lizmap
   postgis:
-    image: 3liz/postgis:${POSTGIS_VERSION}
     build:
       context: ./docker/postgis
     container_name: postgis-1
