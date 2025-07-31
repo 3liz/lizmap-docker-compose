@@ -5,3 +5,6 @@
 .env
 *.qgs~
 .cnab/
+
+# Allow pushing projects directly 
+!/lizmap/instances
