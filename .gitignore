@@ -1,11 +1,7 @@
 # IDE
 .idea
 .DS_Store
-/lizmap/*
+/lizmap
 .env
 *.qgs~
 .cnab/
-
-# Allow pushing projects directly 
-!/lizmap/instances/
-!/lizmap/instances/**
