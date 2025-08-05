@@ -90,6 +90,22 @@ services:
         aliases:
           - ${POSTGIS_ALIAS}
 
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - 9100:9100
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command: [
+      "--path.procfs=/host/proc",
+      "--path.rootfs=/rootfs",
+      "--path.sysfs=/host/sys",
+      "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)",
+      "--collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|mqueue|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|sysfs|tracefs)",
+    ]
+
 volumes:
   postgis_data:
     driver: local
