@@ -1,12 +1,12 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveUser="max" saveUserFull="Max Halleran" saveDateTime="2025-07-31T13:47:56" projectname="" version="3.40.5-Bratislava">
+<qgis projectname="" version="3.40.2-Bratislava" saveDateTime="2025-08-05T08:57:21" saveUserFull="Michael Dos Santos" saveUser="mdossantos">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
-  <projectFlags set=""/>
+  <projectFlags set="TrustStoredLayerStatistics"/>
   <projectCrs>
     <spatialrefsys nativeFormat="Wkt">
-      <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
+      <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
       <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs</proj4>
       <srsid>3857</srsid>
       <srid>3857</srid>
@@ -30,14 +30,14 @@
       <geographicflag>false</geographicflag>
     </spatialrefsys>
   </verticalCrs>
-  <elevation-shading-renderer edl-distance="0.5" hillshading-is-active="0" hillshading-is-multidirectional="0" combined-method="0" edl-strength="1000" light-altitude="45" edl-is-active="1" hillshading-z-factor="1" is-active="0" light-azimuth="315" edl-distance-unit="0"/>
+  <elevation-shading-renderer is-active="0" light-azimuth="315" edl-distance-unit="0" combined-method="0" edl-is-active="1" hillshading-z-factor="1" light-altitude="45" edl-strength="1000" hillshading-is-active="0" hillshading-is-multidirectional="0" edl-distance="0.5"/>
   <layer-tree-group>
     <customproperties>
       <Option/>
     </customproperties>
     <custom-order enabled="0"/>
   </layer-tree-group>
-  <snapping-settings tolerance="12" minScale="0" scaleDependencyMode="0" intersection-snapping="0" maxScale="0" enabled="0" self-snapping="0" unit="1" type="0" mode="2">
+  <snapping-settings type="0" tolerance="12" enabled="0" intersection-snapping="0" minScale="0" mode="2" self-snapping="0" scaleDependencyMode="0" unit="1" maxScale="0">
     <individual-layer-settings/>
   </snapping-settings>
   <relations/>
@@ -53,7 +53,7 @@
     <rotation>0</rotation>
     <destinationsrs>
       <spatialrefsys nativeFormat="Wkt">
-        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
+        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
         <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs</proj4>
         <srsid>3857</srsid>
         <srid>3857</srid>
@@ -70,7 +70,7 @@
   <projectModels/>
   <legend updateDrawingOrder="true"/>
   <mapViewDocks/>
-  <main-annotation-layer minScale="0" legendPlaceholderImage="" autoRefreshTime="0" maxScale="0" autoRefreshMode="Disabled" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" type="annotation" styleCategories="AllStyleCategories">
+  <main-annotation-layer styleCategories="AllStyleCategories" type="annotation" autoRefreshTime="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0" minScale="0" refreshOnNotifyEnabled="0" autoRefreshMode="Disabled" legendPlaceholderImage="" maxScale="0">
     <id>Annotations_fbdffcb5_0c5e_4cde_8c61_25b52aac8e0c</id>
     <datasource></datasource>
     <keywordList>
@@ -79,7 +79,7 @@
     <layername>Annotations</layername>
     <srs>
       <spatialrefsys nativeFormat="Wkt">
-        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
+        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
         <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs</proj4>
         <srsid>3857</srsid>
         <srid>3857</srid>
@@ -180,6 +180,11 @@
       <Automatic type="bool">true</Automatic>
       <DecimalPlaces type="int">2</DecimalPlaces>
     </PositionPrecision>
+    <QFieldSync>
+      <attachmentDirs type="QStringList">
+        <value>DCIM</value>
+      </attachmentDirs>
+    </QFieldSync>
     <RenderMapTile type="bool">false</RenderMapTile>
     <SpatialRefSys>
       <ProjectionsEnabled type="int">1</ProjectionsEnabled>
@@ -191,7 +196,7 @@
         <value>lizmap_user_groups</value>
       </variableNames>
       <variableValues type="QStringList">
-        <value>qgisinfo</value>
+        <value>fielddmstest00</value>
         <value></value>
         <value></value>
       </variableValues>
@@ -206,6 +211,7 @@
     </WFSTLayers>
     <WFSUrl type="QString"></WFSUrl>
     <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSAddLayerGroupsLegendGraphic type="bool">false</WMSAddLayerGroupsLegendGraphic>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSContactOrganization type="QString"></WMSContactOrganization>
@@ -231,8 +237,9 @@
     <WMSRootName type="QString">FieldDMS_Test_00_TemplateBlankNoLayers</WMSRootName>
     <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
-    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
     <WMSServiceTitle type="QString">FieldDMS_Test_00_TemplateBlankNoLayers</WMSServiceTitle>
+    <WMSSkipNameForGroup type="bool">false</WMSSkipNameForGroup>
     <WMSTileBuffer type="int">0</WMSTileBuffer>
     <WMSUrl type="QString"></WMSUrl>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
@@ -257,12 +264,34 @@
       <Project type="bool">false</Project>
     </WMTSPngLayers>
     <WMTSUrl type="QString"></WMTSUrl>
+    <qfieldsync>
+      <areaOfInterest type="QString"></areaOfInterest>
+      <areaOfInterestCrs type="QString"></areaOfInterestCrs>
+      <baseMapMupp type="double">10</baseMapMupp>
+      <baseMapTheme type="QString"></baseMapTheme>
+      <baseMapTileSize type="int">1024</baseMapTileSize>
+      <baseMapTilesMaxZoomLevel type="int">14</baseMapTilesMaxZoomLevel>
+      <baseMapTilesMinZoomLevel type="int">14</baseMapTilesMinZoomLevel>
+      <baseMapType type="QString">singleLayer</baseMapType>
+      <createBaseMap type="int">0</createBaseMap>
+      <digitizingLogsLayer type="QString"></digitizingLogsLayer>
+      <forceAutoPush type="int">0</forceAutoPush>
+      <forceAutoPushIntervalMins type="int">30</forceAutoPushIntervalMins>
+      <geofencingBehavior type="int">1</geofencingBehavior>
+      <geofencingIsActive type="int">0</geofencingIsActive>
+      <geofencingLayer type="QString"></geofencingLayer>
+      <geofencingShouldPreventDigitizing type="int">0</geofencingShouldPreventDigitizing>
+      <layerActionPreference type="QString">online</layerActionPreference>
+      <mapThemesActiveLayers type="QString">{}</mapThemesActiveLayers>
+      <maximumImageWidthHeight type="int">0</maximumImageWidthHeight>
+      <offlineCopyOnlyAoi type="int">0</offlineCopyOnlyAoi>
+    </qfieldsync>
   </properties>
   <dataDefinedServerProperties>
     <Option type="Map">
-      <Option value="" name="name" type="QString"/>
+      <Option value="" type="QString" name="name"/>
       <Option name="properties"/>
-      <Option value="collection" name="type" type="QString"/>
+      <Option value="collection" type="QString" name="type"/>
     </Option>
   </dataDefinedServerProperties>
   <visibility-presets/>
@@ -297,9 +326,9 @@
   <Sensors/>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales/>
-    <DefaultViewExtent ymax="9408715.01253824681043625" xmin="-16277220.71407750248908997" xmax="-9937695.7956734225153923" ymin="5576547.77574700117111206">
+    <DefaultViewExtent ymin="5576547.77574700117111206" xmin="-16014154.85769367590546608" ymax="9408715.01253824681043625" xmax="-10200761.65205724909901619">
       <spatialrefsys nativeFormat="Wkt">
-        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
+        <wkt>PROJCRS["WGS 84 / Pseudo-Mercator",BASEGEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4326]],CONVERSION["Popular Visualisation Pseudo-Mercator",METHOD["Popular Visualisation Pseudo Mercator",ID["EPSG",1024]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["False easting",0,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["easting (X)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["northing (Y)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Web mapping and visualisation."],AREA["World between 85.06°S and 85.06°N."],BBOX[-85.06,-180,85.06,180]],ID["EPSG",3857]]</wkt>
         <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs</proj4>
         <srsid>3857</srsid>
         <srid>3857</srid>
@@ -311,46 +340,46 @@
       </spatialrefsys>
     </DefaultViewExtent>
   </ProjectViewSettings>
-  <ProjectStyleSettings projectStyleId="attachment:///AqyklV_styles.db" RandomizeDefaultSymbolColor="1" DefaultSymbolOpacity="1" iccProfileId="attachment:///" colorModel="Rgb">
+  <ProjectStyleSettings DefaultSymbolOpacity="1" colorModel="Rgb" projectStyleId="attachment:///AqyklV_styles.db" RandomizeDefaultSymbolColor="1" iccProfileId="attachment:///">
     <databases/>
   </ProjectStyleSettings>
-  <ProjectTimeSettings timeStepUnit="h" totalMovieFrames="100" frameRate="1" cumulativeTemporalRange="0" timeStep="1"/>
+  <ProjectTimeSettings timeStep="1" cumulativeTemporalRange="0" frameRate="1" timeStepUnit="h" totalMovieFrames="100"/>
   <ElevationProperties FilterInvertSlider="0">
     <terrainProvider type="flat">
-      <TerrainProvider scale="1" offset="0"/>
+      <TerrainProvider offset="0" scale="1"/>
     </terrainProvider>
   </ElevationProperties>
-  <ProjectDisplaySettings CoordinateAxisOrder="Default" CoordinateType="MapCrs">
+  <ProjectDisplaySettings CoordinateType="MapCrs" CoordinateAxisOrder="Default">
     <BearingFormat id="bearing">
       <Option type="Map">
-        <Option name="decimal_separator" type="invalid"/>
-        <Option value="6" name="decimals" type="int"/>
-        <Option value="0" name="direction_format" type="int"/>
-        <Option value="0" name="rounding_type" type="int"/>
-        <Option value="false" name="show_plus" type="bool"/>
-        <Option value="true" name="show_thousand_separator" type="bool"/>
-        <Option value="false" name="show_trailing_zeros" type="bool"/>
-        <Option name="thousand_separator" type="invalid"/>
+        <Option type="invalid" name="decimal_separator"/>
+        <Option value="6" type="int" name="decimals"/>
+        <Option value="0" type="int" name="direction_format"/>
+        <Option value="0" type="int" name="rounding_type"/>
+        <Option value="false" type="bool" name="show_plus"/>
+        <Option value="true" type="bool" name="show_thousand_separator"/>
+        <Option value="false" type="bool" name="show_trailing_zeros"/>
+        <Option type="invalid" name="thousand_separator"/>
       </Option>
     </BearingFormat>
     <GeographicCoordinateFormat id="geographiccoordinate">
       <Option type="Map">
-        <Option value="DecimalDegrees" name="angle_format" type="QString"/>
-        <Option name="decimal_separator" type="invalid"/>
-        <Option value="6" name="decimals" type="int"/>
-        <Option value="0" name="rounding_type" type="int"/>
-        <Option value="false" name="show_leading_degree_zeros" type="bool"/>
-        <Option value="false" name="show_leading_zeros" type="bool"/>
-        <Option value="false" name="show_plus" type="bool"/>
-        <Option value="false" name="show_suffix" type="bool"/>
-        <Option value="true" name="show_thousand_separator" type="bool"/>
-        <Option value="false" name="show_trailing_zeros" type="bool"/>
-        <Option name="thousand_separator" type="invalid"/>
+        <Option value="DecimalDegrees" type="QString" name="angle_format"/>
+        <Option type="invalid" name="decimal_separator"/>
+        <Option value="6" type="int" name="decimals"/>
+        <Option value="0" type="int" name="rounding_type"/>
+        <Option value="false" type="bool" name="show_leading_degree_zeros"/>
+        <Option value="false" type="bool" name="show_leading_zeros"/>
+        <Option value="false" type="bool" name="show_plus"/>
+        <Option value="false" type="bool" name="show_suffix"/>
+        <Option value="true" type="bool" name="show_thousand_separator"/>
+        <Option value="false" type="bool" name="show_trailing_zeros"/>
+        <Option type="invalid" name="thousand_separator"/>
       </Option>
     </GeographicCoordinateFormat>
     <CoordinateCustomCrs>
       <spatialrefsys nativeFormat="Wkt">
-        <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+        <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
         <srsid>3452</srsid>
         <srid>4326</srid>
@@ -362,7 +391,7 @@
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings destinationLayer="" destinationFollowsActiveLayer="1" autoCommitFeatures="0" autoAddTrackVertices="0">
+  <ProjectGpsSettings destinationLayer="" destinationFollowsActiveLayer="1" autoAddTrackVertices="0" autoCommitFeatures="0">
     <timeStampFields/>
   </ProjectGpsSettings>
 </qgis>

@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis saveDateTime="2025-08-05T13:54:40" version="3.40.2-Bratislava" saveUserFull="Michael Dos Santos" projectname="" saveUser="mdossantos">
+<qgis saveDateTime="2025-08-05T13:46:08" version="3.40.2-Bratislava" saveUserFull="Michael Dos Santos" projectname="" saveUser="mdossantos">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -428,7 +428,7 @@
         <value>lizmap_user_groups</value>
       </variableNames>
       <variableValues type="QStringList">
-        <value>fielddmstest01</value>
+        <value>fielddmstest00</value>
         <value></value>
         <value></value>
       </variableValues>
