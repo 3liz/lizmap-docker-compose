@@ -6,10 +6,9 @@ Run a complete Lizmap stack with test data.
 - QGIS Server
 - Redis
 
-**Note**: this is a sample configuration for testing Lizmap web client with QGIS and WPS features.
+## Public URL
 
-❗**If you want to use it on a production server, you will need to make adjustments to meet your
-production requirements.**
+[http://15.157.78.82/](http://15.157.78.82/)
 
 ## Requirements
 
