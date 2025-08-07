@@ -1,6 +1,15 @@
 services:
   lizmap:
     image: 3liz/lizmap-web-client:${LIZMAP_VERSION_TAG}
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     environment:
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_CACHEREDISHOST: redis
@@ -29,6 +38,15 @@ services:
     restart: unless-stopped
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     environment:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGSPASSFILE: /srv/etc/pgpass.conf
@@ -53,11 +71,29 @@ services:
     restart: unless-stopped
   redis:
     image: redis:5-alpine
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     volumes:
       - { type: volume, source: redis_data, target: /data }
   web:
     image: nginx:alpine
     user: ${LIZMAP_UID}:${LIZMAP_GID}
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     volumes:
       - { type: bind, source: "${LIZMAP_DIR}/etc/nginx.conf", target: /etc/nginx/nginx.conf }
       - { type: bind, source: "${LIZMAP_DIR}/var/log/nginx", target: /var/log/nginx }
@@ -71,6 +107,15 @@ services:
     build:
       context: ./docker/postgis
     container_name: postgis-1
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     volumes:
       - { type: volume, source: postgis_data, target: /var/lib/postgresql/data }
     environment:
@@ -92,6 +137,15 @@ services:
 
   node-exporter:
     image: prom/node-exporter:latest
+    logging:
+      driver: loki
+      options:
+        loki-url: ${LOKI_URL}
+        loki-retries: 2
+        loki-max-backoff: 800ms
+        loki-timeout: 1s
+        keep-file: "true"
+        mode: "non-blocking"
     ports:
       - 9100:9100
     volumes:
