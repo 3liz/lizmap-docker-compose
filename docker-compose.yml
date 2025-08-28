@@ -26,7 +26,17 @@ services:
     depends_on:
       postgis:
         condition: service_healthy
+      redis:
+        condition: service_started
+      map:
+        condition: service_started
     restart: unless-stopped
+    healthcheck:
+        test: ["CMD-SHELL", "php-fpm-healthcheck || exit 1"]
+        interval: 30s
+        timeout: 30s
+        start_interval: 2s
+        start_period: 10s
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
     environment:
@@ -52,7 +62,7 @@ services:
       - ${OWS_PORT}:8080
     restart: unless-stopped
   redis:
-    image: redis:5-alpine
+    image: redis:7-alpine
     volumes:
       - { type: volume, source: redis_data, target: /data }
   web:
@@ -66,7 +76,8 @@ services:
     ports:
       - ${LIZMAP_PORT}:8080
     depends_on:
-      - lizmap
+      lizmap:
+        condition: service_healthy
   postgis:
     image: 3liz/postgis:${POSTGIS_VERSION}
     volumes:
@@ -81,9 +92,10 @@ services:
       - ${POSTGIS_PORT}:5432
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d ${POSTGRES_LIZMAP_DB} -q || exit 1"]
-      interval: 10s
-      timeout: 5s
-      start_period: 60s
+      interval: 30s
+      timeout: 30s
+      start_interval: 2s
+      start_period: 10s
     networks:
       default:
         aliases:
