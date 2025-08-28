@@ -143,6 +143,8 @@ configure() {
 
     source $INSTALL_SOURCE/env.default
 
+    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_DIR/instances"}
+    
     docker run -it \
         -u $LIZMAP_UID:$LIZMAP_GID \
         --rm \
@@ -150,6 +152,12 @@ configure() {
         -e INSTALL_DEST=/lizmap \
         -e LIZMAP_DIR=$INSTALL_DEST \
         -e QGSRV_SERVER_PLUGINPATH=/lizmap/plugins \
+        -e LIZMAP_PROJECTS=$LIZMAP_PROJECTS \
+        -e LIZMAP_VERSION_TAG=$LIZMAP_VERSION_TAG \
+        -e QGIS_VERSION_TAG=$QGIS_VERSION_TAG \
+        -e POSTGIS_VERSION=$POSTGIS_VERSION \
+        -e QGIS_MAP_WORKERS=$QGIS_MAP_WORKERS \
+        -e WPS_NUM_WORKERS=$WPS_NUM_WORKERS \
         -v $INSTALL_SOURCE:/install \
         -v $INSTALL_DEST:/lizmap \
         -v $scriptdir:/src \
