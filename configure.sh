@@ -143,7 +143,7 @@ configure() {
 
     source $INSTALL_SOURCE/env.default
 
-    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-"$LIZMAP_DIR/instances"}
+    LIZMAP_PROJECTS=${LIZMAP_PROJECTS:-$INSTALL_DEST"/instances"}
     
     docker run -it \
         -u $LIZMAP_UID:$LIZMAP_GID \
