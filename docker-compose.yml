@@ -20,6 +20,7 @@ services:
       - { type: bind, source: "${LIZMAP_DIR}/www", target: /www/lizmap/www }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-modules", target: /www/lizmap/lizmap-modules }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-my-packages", target: /www/lizmap/my-packages }
+      - { type: bind, source: "${LIZMAP_DIR}/cache", target: /srv/cache }
       - { type: bind, source: "${LIZMAP_DIR}/etc", target: /srv/etc, read_only: true }
     command:
       - php-fpm

@@ -27,6 +27,7 @@ _makedirs() {
              $INSTALL_DEST/processing \
              $INSTALL_DEST/wps-data \
              $INSTALL_DEST/www \
+             $INSTALL_DEST/cache \
              $INSTALL_DEST/var/log/nginx \
              $INSTALL_DEST/var/nginx-cache \
              $INSTALL_DEST/var/lizmap-theme-config \
