@@ -84,6 +84,9 @@ fi
 
 _makelizmapprofiles() {
     cat > $INSTALL_DEST/etc/profiles.d/lizmap_local.ini.php <<-EOF
+[jdb]
+lizlog=jauth
+
 [jdb:jauth]
 driver=pgsql
 host=$POSTGIS_ALIAS
