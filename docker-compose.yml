@@ -40,10 +40,15 @@ services:
   map:
     image: 3liz/qgis-map-server:${QGIS_VERSION_TAG}
     environment:
+      3LIZ_SKIP_STATS: 1
+      GDAL_CACHEMAX: 2048
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGSPASSFILE: /srv/etc/pgpass.conf
       QGIS_OPTIONS_PATH: /srv/etc/qgis
       QGIS_SERVER_LIZMAP_REVEAL_SETTINGS: 'yes'
+      QGIS_SERVER_TRUST_LAYER_METADATA: 'True'
+      QGIS_SERVER_FORCE_READONLY_LAYERS: 'True'
+      QGIS_SERVER_APPLICATION_NAME: 'QGIS Server LTR'
       QGSRV_API_ENABLED_LIZMAP: 'yes'
       QGSRV_CACHE_SIZE: '20'
       QGSRV_CACHE_STRICT_CHECK: 'no'
@@ -53,6 +58,7 @@ services:
       QGSRV_SERVER_PLUGINPATH: /srv/plugins
       QGSRV_SERVER_RESTARTMON: /srv/.qgis-restart
       QGSRV_SERVER_WORKERS: ${QGIS_MAP_WORKERS}
+      QGSRV_SERVER_TIMEOUT: 30
     volumes:
       - { type: bind, source: "${LIZMAP_PROJECTS}", target: /srv/projects }
       - { type: bind, source: "${LIZMAP_DIR}/plugins", target: /srv/plugins }
