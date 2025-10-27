@@ -3,7 +3,8 @@
 Run a complete Lizmap stack with test data. 
 
 - Lizmap Web Client
-- QGIS Server
+- QGIS Server with Py-QGIS-Server
+- PostgreSQL with PostGIS
 - Redis
 
 **Note**: this is a sample configuration for testing Lizmap web client with QGIS and WPS features.
@@ -13,8 +14,10 @@ production requirements.**
 
 ## Requirements
 
-- Docker engine
-- docker-compose v2 
+- Docker Engine also knonw as Docker CE
+- Docker Compose plugin
+
+We recommend to use the docker's repository https://docs.docker.com/engine/install/
 
 ## Quick start
 
@@ -31,10 +34,10 @@ Or if you want to test specific version (here last 3.X.Y version):
 LIZMAP_VERSION_TAG=3.9 ./configure.sh configure
 ```
 
-Run lizmap:
+Run the stack:
 ```bash
 docker compose pull
-docker compose up
+docker compose up -d
 ```
 
 To run lizmap visible to another system, prefix the docker command with a variable. NB! This will be plain HTTP with no encryption and not suitable for production.
