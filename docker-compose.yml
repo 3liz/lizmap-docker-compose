@@ -69,7 +69,7 @@ services:
       - ${OWS_PORT}:8080
     restart: unless-stopped
   redis:
-    image: redis:7-alpine
+    image: redis:8-alpine
     volumes:
       - { type: volume, source: redis_data, target: /data }
   web:
