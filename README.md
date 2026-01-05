@@ -85,6 +85,56 @@ You need to :
 * in the Lizmap admin panel, add the directory you created
 * add one or more QGIS projects with the Lizmap CFG file in the directory
 
+## Update versions
+
+To update versions simply update your `.env` file.
+
+```bash
+LIZMAP_VERSION_TAG=3.8
+QGIS_VERSION_TAG=3.40
+POSTGIS_VERSION=13-3
+```
+
+Find the **list of available docker images versions** available, in the Docker Hub tag page of each image :
+
+| Image name | Dockerhub image | Env variable related |
+| ------------ | ------ | ---- |
+| **3liz/lizmap-web-client** | [hub.docker.com/r/3liz/lizmap-web-client](https://hub.docker.com/r/3liz/lizmap-web-client/tags) | `LIZMAP_VERSION_TAG` |
+| **3liz/qgis-map-server** | [hub.docker.com/r/3liz/qgis-map-server](https://hub.docker.com/r/3liz/qgis-map-server/tags) | `QGIS_VERSION_TAG` |
+| **3liz/postgis** | [hub.docker.com/r/3liz/postgis](https://hub.docker.com/r/3liz/postgis/tags) | `POSTGIS_VERSION` |
+
+Once updated, simply **run the following command**
+
+``` bash
+docker compose up -d
+```
+
+This one will **pull the new images**, and update your instance versions.
+
+#### *NB :* You might face `The lizmap_server plugin needs to be updated` error (see [#68](https://github.com/3liz/lizmap-docker-compose/issues/68))
+
+To fix this issue :
+1. Connect to your lizmap container.
+``` bash
+docker compose exec map bash
+```
+
+2. Move to your qgis server plugins folder 
+``` bash
+cd /srv/plugins
+qgis-plugin-manager list
+qgis-plugin-manager update
+qgis-plugin-manager upgrade
+```
+
+More info about qgis-plugin-manager [here](https://github.com/3liz/qgis-plugin-manager)
+
+3. Exit from your container and restart lizmap container to handle new changes
+``` bash
+exit
+docker compose restart map
+```
+
 ## Reset the configuration
 
 In command line
