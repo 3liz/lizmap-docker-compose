@@ -6,11 +6,15 @@
   },
   "onCreateCommand": "bash .devcontainer/setup.sh",
   "postStartCommand": "bash .devcontainer/setup.sh",
-  "forwardPorts": [8090],
+  "forwardPorts": [8090, 8093],
   "portsAttributes": {
     "8090": {
       "label": "Lizmap Web Client",
       "onAutoForward": "openBrowser"
+    },
+    "8093": {
+      "label": "PostGIS (connect QGIS Desktop here — see PUBLISH.md)",
+      "onAutoForward": "silent"
     }
   },
   "hostRequirements": {

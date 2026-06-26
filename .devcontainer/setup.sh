@@ -12,8 +12,9 @@ cd "$(dirname "$0")/.."
 COMPOSE="docker compose -f docker-compose.yml -f .devcontainer/docker-compose.codespaces.yml"
 MARKER="lizmap/.codespaces-configured"
 
-# Fixed, forwardable web port (matches forwardPorts in devcontainer.json)
-export LIZMAP_PORT=8090
+# Fixed, forwardable ports (match forwardPorts in devcontainer.json)
+export LIZMAP_PORT=8090    # Lizmap web UI
+export POSTGIS_PORT=8093   # PostGIS, so QGIS Desktop can reach it via `gh codespace ports forward`
 
 if [ ! -f "$MARKER" ]; then
   echo "▶ Configuring Lizmap (first run, this happens only once)…"
@@ -22,16 +23,21 @@ if [ ! -f "$MARKER" ]; then
   # non-interactive Codespaces/CI shell (otherwise: "the input device is not a TTY").
   script -qefc "./configure.sh configure" /dev/null
 
-  # Pin the web port to the forwarded one (env.default would otherwise bind 127.0.0.1:8090).
-  sed -i 's#^LIZMAP_PORT=.*#LIZMAP_PORT=8090#' lizmap/.env
+  # Pin the forwarded ports (env.default would otherwise bind them to 127.0.0.1).
+  sed -i 's#^LIZMAP_PORT=.*#LIZMAP_PORT=8090#'   lizmap/.env
+  sed -i 's#^POSTGIS_PORT=.*#POSTGIS_PORT=8093#' lizmap/.env
 
   # admin / admin, WITHOUT a forced password change — see docker-compose.codespaces.yml.
   printf 'admin' > lizmap/etc/admin.conf
 
-  # Auto-register the two bundled demo projects so a working map shows up immediately,
-  # instead of an empty admin panel. Paths are inside the container (projects -> /srv/projects).
+  # An empty, writable repository where testers drop their own project (see PUBLISH.md).
+  mkdir -p lizmap/instances/myprojects
+
+  # Auto-register the two bundled demo projects (so a working map shows up immediately
+  # instead of an empty admin panel) plus the empty "My projects" repository. Paths are
+  # inside the container (projects -> /srv/projects).
   cat > lizmap/etc/lizmapconfig.d/codespaces-demo.ini.php <<'INI'
-; Demo repositories auto-registered for the online test instance (GitHub Codespaces).
+; Repositories auto-registered for the online test instance (GitHub Codespaces).
 ; Remove this file to start from an empty Lizmap.
 [repository:demo]
 label="Demo - QGIS info"
@@ -40,6 +46,10 @@ path="/srv/projects/qgis_info/"
 [repository:france]
 label="Demo - France parts"
 path="/srv/projects/test_france_parts/"
+
+[repository:myprojects]
+label="My projects"
+path="/srv/projects/myprojects/"
 INI
 
   touch "$MARKER"
@@ -61,7 +71,8 @@ $COMPOSE exec -T postgis psql -v ON_ERROR_STOP=1 \
   -U "${POSTGRES_LIZMAP_USER:-lizmap}" -d "${POSTGRES_LIZMAP_DB:-lizmap}" -c "
     INSERT INTO lizmap.jacl2_rights (id_aclsbj, id_aclgrp, id_aclres, canceled) VALUES
       ('lizmap.repositories.view','__anonymous','demo',0),
-      ('lizmap.repositories.view','__anonymous','france',0)
+      ('lizmap.repositories.view','__anonymous','france',0),
+      ('lizmap.repositories.view','__anonymous','myprojects',0)
     ON CONFLICT DO NOTHING;" || echo "  (skipped — DB not ready yet, will retry next start)"
 
 cat <<'EOF'

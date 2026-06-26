@@ -27,6 +27,9 @@ Lizmap in your browser after a few minutes — with two demo maps already loaded
 - Everything runs in *your* Codespace, reachable at the URL Codespaces gives you
   (`https://<your-codespace>-8090.app.github.dev`) — there is no shared server.
 
+Want to **publish your own QGIS project** (including data stored in the PostGIS database)?
+See **[PUBLISH.md](PUBLISH.md)**.
+
 This is meant for evaluation/testing. For production, use the `docker compose` setup below.
 
 ## Requirements
