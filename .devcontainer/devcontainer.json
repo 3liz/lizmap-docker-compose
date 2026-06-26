@@ -1,0 +1,21 @@
+{
+  "name": "Lizmap Web Client",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "onCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/setup.sh",
+  "forwardPorts": [8090],
+  "portsAttributes": {
+    "8090": {
+      "label": "Lizmap Web Client",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "8gb",
+    "storage": "32gb"
+  }
+}

@@ -1,0 +1,11 @@
+# Overrides applied only when running inside GitHub Codespaces / a dev container.
+# Goal: a frictionless online test instance — no forced password change at first login.
+#
+# The base entrypoint, when LIZMAP_ADMIN_DEFAULT_PASSWORD_SOURCE points to a file,
+# creates the admin account with that password and WITHOUT the `--reset` flag
+# (see docker/lizmap-entrypoint.sh in lizmap-web-client). admin.conf is written by
+# .devcontainer/setup.sh into ${LIZMAP_DIR}/etc, mounted read-only at /srv/etc.
+services:
+  lizmap:
+    environment:
+      LIZMAP_ADMIN_DEFAULT_PASSWORD_SOURCE: /srv/etc/admin.conf
