@@ -75,6 +75,16 @@ $COMPOSE exec -T postgis psql -v ON_ERROR_STOP=1 \
       ('lizmap.repositories.view','__anonymous','myprojects',0)
     ON CONFLICT DO NOTHING;" || echo "  (skipped — DB not ready yet, will retry next start)"
 
+# Since PostgreSQL 15, the "public" schema no longer grants CREATE to everyone by
+# default — only its owner (the bootstrap superuser) does. Testers connecting from
+# QGIS as the "lizmap" role would hit "permission denied for schema public" the moment
+# they try to create a table there. Restore the pre-15, friendlier default for this
+# single-user sandbox (run as the postgres superuser, since lizmap doesn't own "public").
+echo "▶ Allowing the lizmap user to create tables in the public schema…"
+$COMPOSE exec -T postgis psql -v ON_ERROR_STOP=1 -U postgres -d "${POSTGRES_LIZMAP_DB:-lizmap}" \
+  -c "GRANT CREATE, USAGE ON SCHEMA public TO \"${POSTGRES_LIZMAP_USER:-lizmap}\";" \
+  || echo "  (skipped — DB not ready yet, will retry next start)"
+
 cat <<'EOF'
 
 ✅ Lizmap is starting on port 8090.
