@@ -12,6 +12,26 @@ Run a complete Lizmap stack with test data.
 ❗**If you want to use it on a production server, you will need to make adjustments to meet your
 production requirements.**
 
+## 🚀 Try Lizmap online in one click (no install)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/3liz/lizmap-docker-compose)
+
+Want to test Lizmap without installing anything? Click the badge above (a free
+GitHub account is enough). GitHub Codespaces starts the whole stack for you and opens
+Lizmap in your browser after a few minutes — with two demo maps already loaded.
+
+- **Administrator login:** `admin` — **password:** `admin`
+- Free within GitHub's [Codespaces free tier](https://github.com/features/codespaces)
+  (60 hours/month). Your instance is private to you and keeps its state for a few weeks
+  (it suspends when idle and resumes on demand).
+- Everything runs in *your* Codespace, reachable at the URL Codespaces gives you
+  (`https://<your-codespace>-8090.app.github.dev`) — there is no shared server.
+
+Want to **publish your own QGIS project** (including data stored in the PostGIS database)?
+See **[PUBLISH.md](PUBLISH.md)**.
+
+This is meant for evaluation/testing. For production, use the `docker compose` setup below.
+
 ## Requirements
 
 - Docker Engine also knonw as Docker CE
