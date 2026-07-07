@@ -9,11 +9,13 @@ Your Codespace ships with an empty **My projects** repository ready to receive y
 ## Prerequisites (on your computer)
 
 - [QGIS Desktop](https://qgis.org) with the **Lizmap** plugin installed.
-- The **GitHub CLI** [`gh`](https://cli.github.com), logged in (`gh auth login`). It is the
-  bridge between your computer and the Codespace — no public ports, no extra password.
+- [VS Code Desktop](https://code.visualstudio.com/download) (free). Once your Codespace is open in
+  the browser, click **Open in VS Code Desktop** (top-left menu, or the green "Code" button on the
+  repo). Sign in with your GitHub account when prompted — no separate password, no command line.
 
-> Find your running Codespace with `gh codespace list`. The commands below will let you pick it
-> interactively, or you can pass `-c <codespace-name>`.
+  *Prefer the terminal?* Everything below (uploading files, reaching PostGIS) also works with the
+  [GitHub CLI](https://cli.github.com) (`gh`) instead of VS Code Desktop — see the tips at the end
+  of each step.
 
 ## Step 1 — Make your data reachable by the server
 
@@ -27,11 +29,14 @@ The stack already runs a PostGIS database; QGIS Server reads it through the pg_s
 named **`lizmap_local`**. The trick is to use that **same service name** on your desktop, so the
 exact same `.qgs` works on your machine *and* on the server with no edit.
 
-1. **Open a tunnel** to the Codespace database (leave it running in a terminal):
-   ```bash
-   gh codespace ports forward 8093:5432
-   ```
-   PostGIS is now reachable at `localhost:8093` on your machine.
+1. **Open a tunnel** to the Codespace database. In VS Code Desktop, open the **Ports** tab
+   (bottom panel) → **Forward a Port** → type `8093` → Enter. PostGIS is now reachable at
+   `localhost:8093` on your machine — no popup, no extra install, it just works because VS Code
+   Desktop tunnels ports to your real `localhost`.
+
+   > 💡 Raw database connections only work through a desktop tool (VS Code Desktop above, or `gh
+   > codespace ports forward 8093:5432` in a terminal) — the public `https://...app.github.dev`
+   > port URL only proxies HTTP(S) and cannot carry the Postgres protocol.
 
 2. **Declare the `lizmap_local` service** on your computer. Add this to your pg_service file
    (`~/.pg_service.conf` on Linux/macOS, `%APPDATA%\postgresql\.pg_service.conf` on Windows):
@@ -65,18 +70,15 @@ In QGIS, open the **Lizmap** plugin, configure your map (base layers, popups, to
 
 ## Step 3 — Send the project to your Codespace
 
-Copy the project files into the **My projects** repository folder of the Codespace
-(`lizmap/instances/myprojects/`). Two equivalent ways:
+Copy the project files (and any GeoPackage / data files if you used Option A) into the
+**My projects** repository folder of the Codespace: `lizmap/instances/myprojects/`.
 
-- **With `gh`** (from the folder containing your project):
-  ```bash
-  gh codespace cp ./myproject.qgs ./myproject.qgs.cfg \
-    'remote:/workspaces/lizmap-docker-compose/lizmap/instances/myprojects/'
-  ```
-  Add your GeoPackage / data files too if you used Option A.
+In VS Code Desktop (or the browser editor), open the **Explorer**, find that folder, and either
+**drag-and-drop** your files onto it, or right-click it → **Upload...** and pick the files. No
+extra tool needed.
 
-- **Or drag-and-drop**: in the Codespace's VS Code window, drop the files into the
-  Explorer under `lizmap/instances/myprojects/`.
+> 💡 Terminal alternative: `gh codespace cp ./myproject.qgs ./myproject.qgs.cfg
+> 'remote:/workspaces/lizmap-docker-compose/lizmap/instances/myprojects/'`
 
 ## Step 4 — Open it
 
