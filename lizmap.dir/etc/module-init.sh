@@ -21,6 +21,19 @@ set -e
 MY_PACKAGES_DIR=/www/lizmap/my-packages
 
 if [ "${LIZMAP_ENABLE_EXTRA_MODULES:-0}" = "1" ] && [ -f "$MY_PACKAGES_DIR/composer.json" ]; then
+    # lizmap-entrypoint.sh normally seeds var/config from var/config.dist before
+    # running the Jelix installer/configurator. Since we run *before* it, do the
+    # same seeding here first: otherwise, on a brand new volume, configurator.php
+    # below would initialize a bare profiles.ini.php missing the [jdb] defaults
+    # (e.g. no driver for the "default" profile), and the real entrypoint would
+    # then skip its own copy since the file already exists. Safe/idempotent to
+    # run twice.
+    CONFIG_DIR=/www/lizmap/var/config
+    cp -aR "$CONFIG_DIR.dist"/* "$CONFIG_DIR"
+    [ ! -f "$CONFIG_DIR/lizmapConfig.ini.php" ] && cp "$CONFIG_DIR/lizmapConfig.ini.php.dist" "$CONFIG_DIR/lizmapConfig.ini.php"
+    [ ! -f "$CONFIG_DIR/localconfig.ini.php" ] && cp "$CONFIG_DIR/localconfig.ini.php.dist" "$CONFIG_DIR/localconfig.ini.php"
+    [ ! -f "$CONFIG_DIR/profiles.ini.php" ] && cp "$CONFIG_DIR/profiles.ini.php.dist" "$CONFIG_DIR/profiles.ini.php"
+
     echo "Installing composer packages from $MY_PACKAGES_DIR"
     composer install --working-dir="$MY_PACKAGES_DIR" --no-interaction
 
