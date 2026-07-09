@@ -9,3 +9,8 @@ services:
   lizmap:
     environment:
       LIZMAP_ADMIN_DEFAULT_PASSWORD_SOURCE: /srv/etc/admin.conf
+      # Automatically install and activate the modules declared in
+      # var/lizmap-my-packages/composer.json (currently the WebDAV module), so
+      # testers can push/pull QGIS projects over WebDAV out of the box. Left
+      # off by default for plain local setups — see README.md "WebDAV module".
+      LIZMAP_ENABLE_EXTRA_MODULES: '1'
