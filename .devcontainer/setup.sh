@@ -16,6 +16,16 @@ MARKER="lizmap/.codespaces-configured"
 export LIZMAP_PORT=8090    # Lizmap web UI
 export POSTGIS_PORT=8093   # PostGIS, so QGIS Desktop can reach it via `gh codespace ports forward`
 
+# The public HTTPS URL GitHub forwards this port to (e.g.
+# https://<name>-8090.app.github.dev). Without this, Lizmap sees the tunnel's
+# internal "Host: localhost:8090" and generates absolute URLs pointing there —
+# notably the WebDAV base URL the QGIS plugin uses to push projects, which then
+# tries to reach the tester's own "localhost:8090" instead of the Codespace and
+# fails with an SSL handshake error. See docker-compose.codespaces.yml.
+if [ -n "${CODESPACE_NAME:-}" ] && [ -n "${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-}" ]; then
+  export LIZMAP_PROXYURL_DOMAIN="${CODESPACE_NAME}-${LIZMAP_PORT}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+fi
+
 if [ ! -f "$MARKER" ]; then
   echo "▶ Configuring Lizmap (first run, this happens only once)…"
 
