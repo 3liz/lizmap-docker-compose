@@ -62,11 +62,11 @@ label="My projects"
 path="/srv/projects/myprojects/"
 INI
 
+  echo "▶ Pulling images (first run can take a few minutes)…"
+  $COMPOSE pull --quiet || true
+
   touch "$MARKER"
 fi
-
-echo "▶ Pulling images (first run can take a few minutes)…"
-$COMPOSE pull --quiet || true
 
 echo "▶ Starting the Lizmap stack (waiting for healthchecks)…"
 $COMPOSE up -d --wait
