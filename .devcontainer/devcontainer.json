@@ -10,7 +10,8 @@
   "portsAttributes": {
     "8090": {
       "label": "Lizmap Web Client",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
     },
     "8093": {
       "label": "PostGIS (connect QGIS Desktop here — see PUBLISH.md)",
