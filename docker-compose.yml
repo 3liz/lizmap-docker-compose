@@ -11,6 +11,9 @@ services:
       LIZMAP_CONFIG_INCLUDE: /srv/etc
       PGSERVICEFILE: /srv/etc/pg_service.conf
       PGPASSFILE: /srv/etc/pgpass.conf
+      # Off by default for plain local setups; the Codespaces override turns it on.
+      # See README.md "WebDAV module".
+      LIZMAP_ENABLE_EXTRA_MODULES: ${LIZMAP_ENABLE_EXTRA_MODULES:-0}
     volumes:
       - { type: bind, source: "${LIZMAP_PROJECTS}", target: /srv/projects }
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-theme-config", target: /www/lizmap/var/lizmap-theme-config }
@@ -22,6 +25,7 @@ services:
       - { type: bind, source: "${LIZMAP_DIR}/var/lizmap-my-packages", target: /www/lizmap/my-packages }
       - { type: bind, source: "${LIZMAP_DIR}/cache", target: /srv/cache }
       - { type: bind, source: "${LIZMAP_DIR}/etc", target: /srv/etc, read_only: true }
+    entrypoint: ["/srv/etc/module-init.sh"]
     command:
       - php-fpm
     depends_on:
