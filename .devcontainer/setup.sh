@@ -85,6 +85,28 @@ $COMPOSE exec -T postgis psql -v ON_ERROR_STOP=1 \
       ('lizmap.repositories.view','__anonymous','myprojects',0)
     ON CONFLICT DO NOTHING;" || echo "  (skipped — DB not ready yet, will retry next start)"
 
+# Grant admins the rights to view the repositories and use the WMS links, edition and
+# vector export tools, so an admin isn't limited to what anonymous visitors can do.
+# Same drop-in-config gap as above (the admin UI would set this when creating a
+# repository there). Idempotent.
+echo "▶ Granting admins full tool access to the demo maps…"
+$COMPOSE exec -T postgis psql -v ON_ERROR_STOP=1 \
+  -U "${POSTGRES_LIZMAP_USER:-lizmap}" -d "${POSTGRES_LIZMAP_DB:-lizmap}" -c "
+    INSERT INTO lizmap.jacl2_rights (id_aclsbj, id_aclgrp, id_aclres, canceled) VALUES
+      ('lizmap.repositories.view','admins','demo',0),
+      ('lizmap.repositories.view','admins','france',0),
+      ('lizmap.repositories.view','admins','myprojects',0),
+      ('lizmap.tools.displayGetCapabilitiesLinks','admins','demo',0),
+      ('lizmap.tools.displayGetCapabilitiesLinks','admins','france',0),
+      ('lizmap.tools.displayGetCapabilitiesLinks','admins','myprojects',0),
+      ('lizmap.tools.edition.use','admins','demo',0),
+      ('lizmap.tools.edition.use','admins','france',0),
+      ('lizmap.tools.edition.use','admins','myprojects',0),
+      ('lizmap.tools.layer.export','admins','demo',0),
+      ('lizmap.tools.layer.export','admins','france',0),
+      ('lizmap.tools.layer.export','admins','myprojects',0)
+    ON CONFLICT DO NOTHING;" || echo "  (skipped — DB not ready yet, will retry next start)"
+
 # Since PostgreSQL 15, the "public" schema no longer grants CREATE to everyone by
 # default — only its owner (the bootstrap superuser) does. Testers connecting from
 # QGIS as the "lizmap" role would hit "permission denied for schema public" the moment
