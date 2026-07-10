@@ -26,6 +26,15 @@ if [ -n "${CODESPACE_NAME:-}" ] && [ -n "${GITHUB_CODESPACES_PORT_FORWARDING_DOM
   export LIZMAP_PROXYURL_DOMAIN="${CODESPACE_NAME}-${LIZMAP_PORT}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
 fi
 
+# devcontainer.json's portsAttributes.visibility isn't reliably honored by Codespaces
+# (see https://github.com/orgs/community/discussions/4068); set it imperatively too so
+# testers can open the map without a GitHub login.
+if [ -n "${CODESPACE_NAME:-}" ]; then
+  echo "▶ Making port ${LIZMAP_PORT} public…"
+  gh codespace ports visibility "${LIZMAP_PORT}:public" -c "$CODESPACE_NAME" \
+    || echo "  (couldn't set port visibility automatically — set it manually in the Ports tab, or check the org's Codespaces port-privacy policy)"
+fi
+
 if [ ! -f "$MARKER" ]; then
   echo "▶ Configuring Lizmap (first run, this happens only once)…"
 
