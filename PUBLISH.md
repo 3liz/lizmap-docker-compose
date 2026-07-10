@@ -35,8 +35,10 @@ exact same `.qgs` works on your machine *and* on the server with no edit.
    Desktop tunnels ports to your real `localhost`.
 
    > 💡 Raw database connections only work through a desktop tool (VS Code Desktop above, or `gh
-   > codespace ports forward 8093:5432` in a terminal) — the public `https://...app.github.dev`
-   > port URL only proxies HTTP(S) and cannot carry the Postgres protocol.
+   > codespace ports forward 8093:8093` in a terminal — the format is `<remote-port>:<local-port>`,
+   > so both sides must be `8093` to match the `pg_service.conf` below) — the public
+   > `https://...app.github.dev` port URL only proxies HTTP(S) and cannot carry the Postgres
+   > protocol.
 
 2. **Declare the `lizmap_local` service** on your computer. Add this to your pg_service file
    (`~/.pg_service.conf` on Linux/macOS, `%APPDATA%\postgresql\.pg_service.conf` on Windows):
