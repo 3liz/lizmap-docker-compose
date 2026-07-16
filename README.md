@@ -1,5 +1,7 @@
 # Run Lizmap stack with docker-compose
 
+[🇫🇷 Lire ceci en français](README.fr.md)
+
 Run a complete Lizmap stack with test data. 
 
 - Lizmap Web Client
