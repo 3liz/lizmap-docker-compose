@@ -1,5 +1,7 @@
 # Publish your own QGIS project to your online Lizmap
 
+[🇫🇷 Lire ceci en français](PUBLISH.fr.md)
+
 This guide is for the one-click [GitHub Codespaces](README.md#-try-lizmap-online-in-one-click-no-install)
 test instance. It explains how to author a QGIS project on your computer and publish it to
 *your* online Lizmap, including the case where your data lives in the bundled PostGIS database.
