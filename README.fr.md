@@ -31,7 +31,7 @@ navigateur après quelques minutes — avec deux cartes de démonstration déjà
   (`https://<your-codespace>-8090.app.github.dev`) — il n'y a pas de serveur partagé.
 
 Vous voulez **publier votre propre projet QGIS** (y compris des données stockées dans la base
-PostGIS) ? Voir **[PUBLISH.md](PUBLISH.md)**.
+PostGIS) ? Voir **[PUBLISH.fr.md](PUBLISH.fr.md)**.
 
 Ceci est destiné à l'évaluation/aux tests. Pour la production, utilisez la configuration
 `docker compose` ci-dessous.
