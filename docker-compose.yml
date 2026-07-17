@@ -48,7 +48,7 @@ services:
       3LIZ_SKIP_STATS: 1
       GDAL_CACHEMAX: 2048
       PGSERVICEFILE: /srv/etc/pg_service.conf
-      PGSPASSFILE: /srv/etc/pgpass.conf
+      PGPASSFILE: /srv/etc/pgpass.conf
       QGIS_OPTIONS_PATH: /srv/etc/qgis
       QGIS_SERVER_LIZMAP_REVEAL_SETTINGS: 'yes'
       QGIS_SERVER_TRUST_LAYER_METADATA: 'True'
